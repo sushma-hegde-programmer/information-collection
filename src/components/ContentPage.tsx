@@ -1,7 +1,6 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+import { Layout, Breadcrumb } from "antd";
+const { Content } = Layout;
 
 function ContentPage() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout } from "antd";
-import PageNavBar from "../components/PageNavBar";
-import PageAppBar from "../components/PageAppBar";
+import PageNavBar from "../components/page-layout/PageNavBar";
+import PageAppBar from "../components/page-layout/PageAppBar";
 
 const { Content } = Layout;
 
