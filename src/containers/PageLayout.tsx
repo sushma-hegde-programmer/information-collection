@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import PageNavBar from "../components/page-layout/PageNavBar";
-import PageAppBar from "../components/page-layout/PageAppBar";
-import { MenuFoldOutlined } from "@ant-design/icons";
-import ContentPage from "../components/ContentPage";
+import PageSideBar from "../components/page-layout/PageSideBar";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import "../styles/AppBarStyle.css";
 
 const { Content, Header } = Layout;
 
 function PageLayout({ ...props }) {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggle = () => {
+    console.log(collapsed);
+    setCollapsed(!collapsed);
+  };
   return (
     <Layout>
-      <PageAppBar />
+      <PageSideBar collapsed={collapsed} />
       <Layout>
-        <Header className="toggle">
-          <Menu theme="light" mode="horizontal">
+        <Header className="header">
+          <Menu mode="horizontal" className="menu">
             <Menu.Item>
-              {React.createElement(MenuFoldOutlined, {
-                className: "trigger",
-              })}
+              {React.createElement(
+                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                {
+                  className: "trigger",
+                  onClick: toggle,
+                }
+              )}
             </Menu.Item>
             <PageNavBar />
           </Menu>

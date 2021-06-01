@@ -6,22 +6,22 @@
   transition: color 0.3s;
 }
 
-.toggle {
+.header {
   background-color: #87bce8;
-  color: #fff;
-  /* width: 93vw; */
-  padding: 0;
 }
 
 .menu {
-  background-color: #fff;
+  background-color: #87bce8;
+  color: #fff;
+}
+
+.toggle {
+  background-color: #87bce8;
+  color: #fff;
+  padding: 0;
 }
 
 .img {
   width: 10rem;
   height: 2.5rem;
-}
-
-.sidebar {
-  background-color: #fff;
 }

@@ -1,3 +1,6 @@
-.navbar_header {
-  background-color: #87bce8;
+@import "~antd/dist/antd.css";
+
+.nav-icon {
+  color: bisque;
+  font-size: 100px;
 }

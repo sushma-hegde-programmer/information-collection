@@ -1,14 +1,13 @@
 import React from "react";
 import PageLayout from "./containers/PageLayout";
-import ContentPage from "./components/ContentPage";
-import PageDrawer from "./components/page-layout/PageDrawer";
+import TestContentPage from "./components/TestContentPage";
 import "./App.css";
 
 function App() {
   return (
     <div>
       <PageLayout>
-        <ContentPage />
+        <TestContentPage />
       </PageLayout>
     </div>
   );
