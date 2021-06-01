@@ -1,0 +1,27 @@
+@import "~antd/dist/antd.css";
+.trigger {
+  padding: 0 1.5rem;
+  font-size: 170%;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.toggle {
+  background-color: #87bce8;
+  color: #fff;
+  /* width: 93vw; */
+  padding: 0;
+}
+
+.menu {
+  background-color: #fff;
+}
+
+.img {
+  width: 10rem;
+  height: 2.5rem;
+}
+
+.sidebar {
+  background-color: #fff;
+}
