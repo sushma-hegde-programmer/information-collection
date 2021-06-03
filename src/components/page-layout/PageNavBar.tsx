@@ -1,32 +1,39 @@
 import React from "react";
-import { Layout, Menu, Avatar } from "antd";
-import { MessageOutlined, BellOutlined } from "@ant-design/icons";
-import PageSideBar from "./PageSideBar";
-import "../../styles/NavBarStyle.css";
+import "./PageNavBar.css";
+import { Avatar } from "antd";
+import { MessageOutlined, BellOutlined, MenuOutlined } from "@ant-design/icons";
+import ProfileCard from "./ProfileCard";
+import ReactTooltip from "react-tooltip";
 
-function PageNavBar() {
+type Props = {
+  toggle: () => void;
+};
+
+const PageNavBar: React.FC<Props> = ({ toggle }) => {
   return (
-    <>
-      <Menu.Item
-        className="nav-menu-item"
-        key="bell"
-        icon={<BellOutlined className="nav-icon" />}
-      ></Menu.Item>
-      <Menu.Item
-        key="msg"
-        icon={<MessageOutlined style={{ fontSize: "170%" }} />}
-      ></Menu.Item>
-      <Avatar
-        size="large"
-        style={{
-          color: "#f56a00",
-          backgroundColor: "#fde3cf",
-        }}
-      >
-        S
-      </Avatar>
-    </>
+    <div className="navbar">
+      <div className="navbar__item icon" onClick={toggle}>
+        <MenuOutlined />
+      </div>
+      <div className="navbar__item icon spacer">none</div>
+      <div className="navbar__item icon">
+        {" "}
+        <BellOutlined />
+      </div>
+      <div className="navbar__item icon">
+        {" "}
+        <MessageOutlined />
+      </div>
+      <div className="navbar__item icon">
+        <Avatar className="avatar" size="large" data-tip data-for="registerTip">
+          S
+        </Avatar>
+      </div>
+      <ReactTooltip id="registerTip" place="bottom" data-toggle="tooltip">
+        <ProfileCard />
+      </ReactTooltip>
+    </div>
   );
-}
+};
 
 export default PageNavBar;

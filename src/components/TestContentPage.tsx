@@ -20,10 +20,13 @@ function TestContentPage() {
             padding: 24,
             margin: 0,
             minHeight: 450,
-            backgroundColor: "purple",
+            backgroundColor: "#FFE4C4",
+            color: "black",
+            fontSize: "50px",
+            textAlign: "center",
           }}
         >
-          Content
+          Home
         </Content>
       </Layout>
     </div>

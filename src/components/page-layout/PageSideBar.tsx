@@ -6,7 +6,8 @@ import {
   LaptopOutlined,
 } from "@ant-design/icons";
 import careator_logo from "../../images/careator-logo.svg";
-import "../../styles/AppBarStyle.css";
+import { NavLink } from "react-router-dom";
+import "./PageSideBar.css";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -17,6 +18,10 @@ type Props = {
 
 const PageAppBar: React.FC<Props> = ({ collapsed }) => {
   console.log("collapsed");
+  let imageClasses = "sidebar__img";
+  if (collapsed) {
+    imageClasses = "sidebar__img hide";
+  }
 
   const displayOptions = [
     {
@@ -36,32 +41,34 @@ const PageAppBar: React.FC<Props> = ({ collapsed }) => {
 
   return (
     <>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        style={{ display: "block" }}
-      >
+      <Sider trigger={null} collapsible collapsed={collapsed}>
         <Menu
+          className="sidebar__menu"
           mode="inline"
           defaultSelectedKeys={["home"]}
-          style={{ height: "100%" }}
         >
           <Menu.Item key="image">
-            <img src={careator_logo} alt="careator-logo" className="img" />
+            <img
+              src={careator_logo}
+              alt="careator-logo"
+              className={imageClasses}
+            />
           </Menu.Item>
           <Menu.Item
             icon={<HomeOutlined />}
             key={displayOptions[0].options[0].option1}
             onClick={() => {
               console.log("in home");
-              //Redirect/link/push to the "/admin/home" route
             }}
           >
-            Home
+            <NavLink exact to="/Home">
+              Home
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
-            Dashboard
+            <NavLink exact to="/Dashboard">
+              Dashboard
+            </NavLink>
           </Menu.Item>
           <SubMenu key="details" icon={<LaptopOutlined />} title="Details">
             <Menu.Item key="work">My work</Menu.Item>
