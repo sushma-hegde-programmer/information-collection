@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
 .trigger {
   padding: 0 1.5rem;
-  font-size: 170%;
+  font-size: 170% !important;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -11,7 +11,7 @@
 }
 
 .menu {
-  background-color: #87bce8;
+  /* background-color: #87bce8; */
   color: #fff;
 }
 
@@ -23,5 +23,5 @@
 
 .img {
   width: 10rem;
-  height: 2.5rem;
+  height: 3rem;
 }

@@ -3,6 +3,14 @@
   text-align: center;
 }
 
+.hello {
+  color: blue;
+  font-size: 300px;
+}
+
+.men_it {
+  font-size: 200px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

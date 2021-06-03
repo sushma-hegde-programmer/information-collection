@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Avatar } from "antd";
 import PageNavBar from "../components/page-layout/PageNavBar";
 import PageSideBar from "../components/page-layout/PageSideBar";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  MessageOutlined,
+  BellOutlined,
+} from "@ant-design/icons";
 import "../styles/AppBarStyle.css";
 
 const { Content, Header } = Layout;
@@ -18,7 +23,7 @@ function PageLayout({ ...props }) {
       <PageSideBar collapsed={collapsed} />
       <Layout>
         <Header className="header">
-          <Menu mode="horizontal" className="menu">
+          <Menu mode="horizontal" className="menu" style={{ float: "right" }}>
             <Menu.Item>
               {React.createElement(
                 collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
@@ -28,6 +33,24 @@ function PageLayout({ ...props }) {
                 }
               )}
             </Menu.Item>
+            <Menu.Item
+              className="nav-menu-item"
+              key="bell"
+              icon={<BellOutlined className="nav-icon" />}
+            ></Menu.Item>
+            <Menu.Item
+              key="msg"
+              icon={<MessageOutlined style={{ fontSize: "170%" }} />}
+            ></Menu.Item>
+            <Avatar
+              size="large"
+              style={{
+                color: "#f56a00",
+                backgroundColor: "#fde3cf",
+              }}
+            >
+              S
+            </Avatar>
             <PageNavBar />
           </Menu>
         </Header>

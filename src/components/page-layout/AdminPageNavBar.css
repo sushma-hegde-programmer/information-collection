@@ -1,0 +1,33 @@
+.header {
+  background-color: #87bce8;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item {
+  background-color: #87bce8;
+  width: 60px;
+  height: 60px;
+}
+
+.spacer {
+  color: burlywood;
+  text-indent: 100%;
+  white-space: wrap;
+  overflow: hidden;
+  flex: 1;
+  /* take all availabe space ---available between space*/
+}
+.icon {
+  background-color: #87bce8;
+  color: white;
+  margin-left: 7px;
+  font-size: 30px !important;
+  text-align: center;
+}
+
+#registerTip {
+  border: 2px solid rgb(228, 225, 225);
+  padding: 0;
+  width: 15em;
+  left: 1087px !important;
+}

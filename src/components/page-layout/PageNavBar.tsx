@@ -1,12 +1,14 @@
 import React from "react";
 import { Layout, Menu, Avatar } from "antd";
 import { MessageOutlined, BellOutlined } from "@ant-design/icons";
+import PageSideBar from "./PageSideBar";
 import "../../styles/NavBarStyle.css";
 
 function PageNavBar() {
   return (
     <>
       <Menu.Item
+        className="nav-menu-item"
         key="bell"
         icon={<BellOutlined className="nav-icon" />}
       ></Menu.Item>

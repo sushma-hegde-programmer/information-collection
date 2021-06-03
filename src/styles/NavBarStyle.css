@@ -1,6 +1,15 @@
 @import "~antd/dist/antd.css";
 
 .nav-icon {
-  color: bisque;
-  font-size: 100px;
+  font-size: 30px !important;
+  border-bottom: 2px solid #ff8818;
+}
+
+.nav-menu-item {
+  border-bottom: 2px solid #ff8818;
+}
+
+.menu {
+  background-color: #87bce8;
+  color: #fff;
 }

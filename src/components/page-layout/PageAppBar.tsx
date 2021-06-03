@@ -1,51 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, Menu } from "antd";
-import ContentPage from "../ContentPage";
 import {
   DashboardOutlined,
   HomeOutlined,
   LaptopOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
 } from "@ant-design/icons";
-import PageNavBar from "./PageNavBar";
-import "../../styles/AppBarStyle.css";
 
 const { SubMenu } = Menu;
-const { Sider, Header, Content } = Layout;
+const { Sider } = Layout;
 
 function PageAppBar() {
-  const [collapsed, setCollapsed] = useState(true);
-  const toggle = () => {
-    console.log(collapsed);
-    setCollapsed(!collapsed);
-  };
   return (
     <>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        style={{ display: "block" }}
-      >
+      <Sider className="site-layout-background" width={200}>
         <Menu
           mode="inline"
           defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["sub1"]}
           style={{ height: "100%" }}
         >
-          <Menu.Item key="image">
-            <img src="../../images/Logo.png" alt="" className="img" />
-          </Menu.Item>
           <Menu.Item
             icon={<HomeOutlined />}
             key="1"
+            title="Home"
             onClick={() => {
               console.log("in home");
             }}
           >
             Home
           </Menu.Item>
-          <Menu.Item key="sub1" icon={<DashboardOutlined />}>
+          <Menu.Item key="sub1" icon={<DashboardOutlined />} title="Dashboard">
             Dashboard
           </Menu.Item>
           <SubMenu key="sub2" icon={<LaptopOutlined />} title="Details">
