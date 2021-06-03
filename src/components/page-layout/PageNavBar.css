@@ -1,0 +1,34 @@
+.navbar {
+  background-color: #87bce8;
+  display: flex;
+  flex-wrap: wrap;
+}
+.navbar__item {
+  background-color: #87bce8;
+  width: 3.76rem;
+  height: 3.75rem;
+}
+.spacer {
+  color: burlywood;
+  text-indent: 100%;
+  white-space: wrap;
+  overflow: hidden;
+  flex: 1;
+  /* take all availabe space ---available between space*/
+}
+.icon {
+  background-color: #87bce8;
+  color: white;
+  margin-left: 0.438rem;
+  font-size: 1.875rem !important;
+  text-align: center;
+}
+.avatar {
+  background-color: red;
+}
+#registerTip {
+  border: 2px solid rgb(228, 225, 225);
+  padding: 0;
+  width: 15em;
+  left: 1087px !important;
+}

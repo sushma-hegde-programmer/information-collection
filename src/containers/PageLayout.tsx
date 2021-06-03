@@ -51,7 +51,7 @@ function PageLayout({ ...props }) {
             >
               S
             </Avatar>
-            <PageNavBar />
+            {/* <PageNavBar /> */}
           </Menu>
         </Header>
         <Content
