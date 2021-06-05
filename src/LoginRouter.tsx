@@ -8,12 +8,13 @@ import {
 import Login from "./components/Login";
 import TestContentPage from "./components/TestContentPage";
 
+//take the prop isLoggedIn and pass it to login component make isLoggedIn as true once user clicks on login component
 function LoginRouter() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/Home" component={TestContentPage} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={TestContentPage} />
+        <Route exact path="/forgotpa" component={Login} />
       </Switch>
     </Router>
   );
