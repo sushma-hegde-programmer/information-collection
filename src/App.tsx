@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AppRouter from "./AppRouter";
 import LoginRouter from "./LoginRouter";
 import Login from "./components/Login";
-import TestContentPage from "./components/TestContentPage";
 
 function renderOnBasisOfLogin(role: string) {
   console.log("hello");
@@ -17,14 +16,7 @@ function App() {
   const [role, setRole] = useState("admin");
   //const [isLoggedIn,setIsLoggedIn] = useState(false)
 
-  return (
-    <div>
-      {renderOnBasisOfLogin(role)}
-      {/* <Login /> */}
-    </div>
-  );
-
-  // return <AppRouter role={role} />;
+  return <div>{renderOnBasisOfLogin(role)}</div>;
 }
 
 export default App;
