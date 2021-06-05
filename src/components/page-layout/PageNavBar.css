@@ -9,7 +9,6 @@
   height: 3.75rem;
 }
 .spacer {
-  color: burlywood;
   text-indent: 100%;
   white-space: wrap;
   overflow: hidden;
@@ -25,6 +24,10 @@
 }
 .avatar {
   background-color: red;
+}
+
+.end-icon {
+  margin-right: 10px;
 }
 #registerTip {
   border: 2px solid rgb(228, 225, 225);

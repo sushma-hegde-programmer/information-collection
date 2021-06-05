@@ -1,6 +1,10 @@
 @import "~antd/dist/antd.css";
 
-.content {
+.pagelayout__content {
   padding: 0 1.5rem;
   height: 100vh;
+}
+
+.pagelayout__footer {
+  text-align: center;
 }

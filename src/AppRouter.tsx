@@ -9,10 +9,13 @@ import DashboardContent from "./components/DashboardContent";
 import TestContentPage from "./components/TestContentPage";
 import PageLayout from "./containers/PageLayout";
 
-const AppRouter: React.FC = (props) => {
+type Props = {
+  role: string;
+};
+const AppRouter: React.FC<Props> = ({ role }) => {
   return (
     <Router>
-      <PageLayout>
+      <PageLayout role={role}>
         <Switch>
           <Route exact path="/Home" component={TestContentPage} />
           <Route exact path="/Dashboard" component={DashboardContent} />

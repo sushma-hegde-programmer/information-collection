@@ -14,30 +14,80 @@ const { Sider } = Layout;
 
 type Props = {
   collapsed: boolean;
+  role: string;
 };
 
-const PageAppBar: React.FC<Props> = ({ collapsed }) => {
-  console.log("collapsed");
+const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
+  var path: Object[] = [{}];
+  console.log("inpage appbar", role);
   let imageClasses = "sidebar__img";
   if (collapsed) {
     imageClasses = "sidebar__img hide";
   }
 
-  const displayOptions = [
+  const array = [
     {
       role: "admin",
-      options: [
+      routes: [
         {
           option1: "Home",
-          route: "http://localhost:3000/admin/Home",
+          route: "/admin/Home",
         },
         {
-          option2: "My work",
-          route: "http://localhost:3000/admin/Work",
+          option2: "Dashboard",
+          route: "/admin/Dashboard",
+        },
+        {
+          option3: "work",
+          route: "/admin/work",
+        },
+      ],
+    },
+    {
+      role: "hr",
+      routes: [
+        {
+          option1: "Home",
+          route: "/hr/Home",
+        },
+        {
+          option2: "Dashboard",
+          route: "/hr/Dashboard",
+        },
+        {
+          option3: "work",
+          route: "/hr/work",
         },
       ],
     },
   ];
+
+  console.log(array.find((arr) => arr.role === role));
+  console.log("routes" + array[0].routes);
+  var helo = array.find((arr) => arr.role === role)?.routes;
+  console.log("routes" + helo?.length);
+
+  //var stringifiedObject = JSON.stringify(helo);
+  // for (let i = 0; i < helo?.length; i++) {
+  //   console.log(helo[i]);
+  // }
+  // console.log(stringifiedObject.length);
+
+  // path = array.find((arr) => arr.role === role)?.routes;
+  array.map(function (element, index, array) {
+    if (array[index].role === role) {
+      path = array[index].routes; //array of objects sits into the variable named path
+      //you can access the element of array (complete object here) but you can't access key:value pair of object
+      //in order to access key and value, make use of javascript Map
+      // let convertedMap = new Map(Object.entries(path));
+      // console.log("map", convertedMap);
+      // console.log("route", path);
+      // console.log("path", path[0]);
+      // console.log(array[index].routes[0].option1);
+      // const value = convertedMap.get("0");
+      // console.log(value);
+    }
+  });
 
   return (
     <>
@@ -47,7 +97,7 @@ const PageAppBar: React.FC<Props> = ({ collapsed }) => {
           mode="inline"
           defaultSelectedKeys={["home"]}
         >
-          <Menu.Item key="image">
+          <Menu.Item key="image" className="sidebar__item image">
             <img
               src={careator_logo}
               alt="careator-logo"
@@ -55,28 +105,41 @@ const PageAppBar: React.FC<Props> = ({ collapsed }) => {
             />
           </Menu.Item>
           <Menu.Item
+            id="home"
+            className="sidebar__item"
+            // style={{ backgroundColor: "red" }}
             icon={<HomeOutlined />}
-            key={displayOptions[0].options[0].option1}
+            // key={}
             onClick={() => {
               console.log("in home");
             }}
           >
-            <NavLink exact to="/Home">
-              Home
+            <NavLink className="sidebar__item navlink" exact to={"/Home"}>
+              hello
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
-            <NavLink exact to="/Dashboard">
+          <Menu.Item
+            className="sidebar__item"
+            key="dashboard"
+            icon={<DashboardOutlined />}
+          >
+            <NavLink className="sidebar__item navlink" exact to="/Dashboard">
               Dashboard
             </NavLink>
           </Menu.Item>
-          <SubMenu key="details" icon={<LaptopOutlined />} title="Details">
+          <SubMenu
+            className="sidebar__item"
+            key="details"
+            icon={<LaptopOutlined />}
+            title="Details"
+          >
             <Menu.Item key="work">My work</Menu.Item>
             <Menu.Item key="todo">To do</Menu.Item>
             <Menu.Item key="opt2">option2</Menu.Item>
             <Menu.Item key="opt3">option3</Menu.Item>
           </SubMenu>
         </Menu>
+        ;
       </Sider>
     </>
   );
