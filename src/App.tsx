@@ -4,7 +4,7 @@ import LoginRouter from "./LoginRouter";
 import Login from "./components/Login";
 
 function App() {
-  const [role, setRole] = useState("admin");
+  const [role, setRole] = useState("Candidate");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function loginAction() {
@@ -12,7 +12,6 @@ function App() {
   }
 
   function renderOnBasisOfLogin(role: string, isLoggedIn: boolean) {
-    console.log("hello");
     if (isLoggedIn) {
       return <AppRouter role={role} />;
     } else {

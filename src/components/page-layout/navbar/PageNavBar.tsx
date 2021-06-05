@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./PageNavBar.css";
 import { Avatar, Popover } from "antd";
 import { MessageOutlined, BellOutlined, MenuOutlined } from "@ant-design/icons";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../ProfileCard";
 import ReactTooltip from "react-tooltip";
 
 type Props = {

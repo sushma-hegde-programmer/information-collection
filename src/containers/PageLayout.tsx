@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 import PageSideBar from "../components/page-layout/sidebar/PageSideBar";
-import PageNavBar from "../components/page-layout/PageNavBar";
+import PageNavBar from "../components/page-layout/navbar/PageNavBar";
 import "../styles/PageLayout.css";
 
 const { Content, Footer } = Layout;

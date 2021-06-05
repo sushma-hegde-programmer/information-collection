@@ -9,7 +9,7 @@ const Login: React.FC<Props> = ({ loginAction }) => {
   return (
     <div>
       <h1>Login</h1>
-      <button onClick={loginAction}>click me</button>
+      <button onClick={loginAction}>Login</button>
     </div>
   );
 };

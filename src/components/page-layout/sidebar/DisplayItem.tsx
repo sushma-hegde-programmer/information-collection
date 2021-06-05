@@ -1,11 +1,6 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Menu } from "antd";
 import { NavLink } from "react-router-dom";
-import {
-  DashboardOutlined,
-  HomeOutlined,
-  LaptopOutlined,
-} from "@ant-design/icons";
 
 type Props = {
   name: string;
@@ -13,16 +8,12 @@ type Props = {
   route: string;
 };
 const DisplayItem: React.FC<Props> = ({ name, icon, route }) => {
-  console.log("icon is -----------", icon);
-
-  console.log(name, route);
   var type = "menu";
-  const a = 10;
 
   function renderOnBasisOfType(type: string) {
     if (type === "menu") {
       return (
-        <Menu>
+        <Menu className="sidebar__menu">
           <Menu.Item className="sidebar__item" key={name} icon={icon}>
             <NavLink className="sidebar__item navlink" exact to={route}>
               {name}
