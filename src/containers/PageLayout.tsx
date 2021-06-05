@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
-import PageSideBar from "../components/page-layout/PageSideBar";
+import PageSideBar from "../components/page-layout/sidebar/PageSideBar";
 import PageNavBar from "../components/page-layout/PageNavBar";
 import "../styles/PageLayout.css";
 
