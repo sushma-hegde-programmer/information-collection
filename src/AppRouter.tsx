@@ -17,7 +17,7 @@ const AppRouter: React.FC<Props> = ({ role }) => {
     <Router>
       <PageLayout role={role}>
         <Switch>
-          <Route exact path="/aHome" component={TestContentPage} />
+          <Route exact path="/admin/home" component={TestContentPage} />
           <Route exact path="/Dashboard" component={DashboardContent} />
         </Switch>
       </PageLayout>

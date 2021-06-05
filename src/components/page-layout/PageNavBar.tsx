@@ -43,14 +43,6 @@ const PageNavBar: React.FC<Props> = ({ toggle }) => {
           </Avatar>
         </div>
       </Popover>
-      {/* <div className="navbar__item icon">
-        <Avatar className="avatar" size="large" data-tip data-for="registerTip">
-          S
-        </Avatar>
-      </div>
-      <ReactTooltip id="registerTip" place="bottom" data-toggle="tooltip">
-        <ProfileCard />
-      </ReactTooltip> */}
     </div>
   );
 };

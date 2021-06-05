@@ -26,7 +26,7 @@ function TestContentPage() {
             textAlign: "center",
           }}
         >
-          Home
+          Admin Home
         </Content>
       </Layout>
     </div>
