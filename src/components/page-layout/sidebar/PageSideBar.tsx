@@ -4,7 +4,6 @@ import careator_logo from "../../../images/careator-logo.svg";
 import { NavLink } from "react-router-dom";
 import DisplayItem from "./DisplayItem";
 import sidebarOptions from "./SidebarOptions";
-import { LaptopOutlined } from "@ant-design/icons";
 import "./PageSideBar.css";
 
 const { Sider } = Layout;
@@ -21,7 +20,7 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
   }
   var index = sidebarOptions.findIndex((item) => item.role === role);
 
-  const array = [1, 2, 3];
+  const item_array = [1, 2, 3];
 
   return (
     <>
@@ -35,45 +34,16 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
             <img
               src={careator_logo}
               alt="careator-logo"
+              id="logo"
+              key="logo"
               className={imageClasses}
             />
           </Menu.Item>
-          <Menu.Item
-            id="1"
-            className="sidebar__item"
-            icon={<LaptopOutlined />}
-            key="1"
-            onClick={() => {
-              console.log("in home");
-            }}
-          >
-            <NavLink
-              className="sidebar__item navlink"
-              exact
-              to={sidebarOptions[index].routes[0].route}
-            >
-              My Workspace
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item
-            id="3"
-            className="sidebar__item"
-            icon={<LaptopOutlined />}
-            key="2"
-            onClick={() => {
-              console.log("in home");
-            }}
-          >
-            <NavLink
-              className="sidebar__item navlink"
-              exact
-              to={sidebarOptions[index].routes[0].route}
-            >
-              My Workspace
-            </NavLink>
-          </Menu.Item>
-
-          {array.map(function (item, i) {
+          {/* if you write separate component to display menu Item, <Menu.Item></Menu.Item> should be written in that component
+          that menu item will remain selected once it is selected. The ant default class will not be changed even though you select another menu item.
+          So if you give background color for selected class that won't be changed even if you select other menu item
+          So it is better to write in map function than writing separate component and then importing it inside <Menu></Menu>*/}
+          {item_array.map(function (item, i) {
             console.log("i", i);
             console.log(sidebarOptions[index].routes[i].route);
             return (
@@ -93,21 +63,6 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
               </Menu.Item>
             );
           })}
-          {/* <DisplayItem
-            name={sidebarOptions[index].routes[0].option}
-            icon={sidebarOptions[index].routes[0].icon}
-            route={sidebarOptions[index].routes[0].route}
-          /> */}
-          {/* <DisplayItem
-            name={sidebarOptions[index].routes[1].option}
-            icon={sidebarOptions[index].routes[1].icon}
-            route={sidebarOptions[index].routes[1].route}
-          />
-          <DisplayItem
-            name={sidebarOptions[index].routes[2].option}
-            icon={sidebarOptions[index].routes[2].icon}
-            route={sidebarOptions[index].routes[2].route}
-          /> */}
         </Menu>
       </Sider>
     </>

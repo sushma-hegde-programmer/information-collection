@@ -4,7 +4,7 @@ import LoginRouter from "./LoginRouter";
 import Login from "./components/Login";
 
 function App() {
-  const [role, setRole] = useState("Admin");
+  const [role, setRole] = useState("Recruiter");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function loginAction() {

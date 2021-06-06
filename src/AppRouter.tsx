@@ -6,7 +6,6 @@ import {
   withRouter,
 } from "react-router-dom";
 import DashboardContent from "./components/DashboardContent";
-import TestContentPage from "./components/TestContentPage";
 import AdminWorkspace from "./containers/AdminWorkspace";
 import RecruiterWorkspace from "./containers/RecruiterWorkspace";
 import CandidateWorkspace from "./containers/CandidateWorkspace";
