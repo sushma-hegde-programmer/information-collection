@@ -21,6 +21,8 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
   }
   var index = sidebarOptions.findIndex((item) => item.role === role);
 
+  const array = [1, 2, 3];
+
   return (
     <>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -36,8 +38,8 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
               className={imageClasses}
             />
           </Menu.Item>
-          {/* <Menu.Item
-            id="home"
+          <Menu.Item
+            id="1"
             className="sidebar__item"
             icon={<LaptopOutlined />}
             key="1"
@@ -52,13 +54,51 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
             >
               My Workspace
             </NavLink>
-          </Menu.Item> */}
-          <DisplayItem
+          </Menu.Item>
+          <Menu.Item
+            id="3"
+            className="sidebar__item"
+            icon={<LaptopOutlined />}
+            key="2"
+            onClick={() => {
+              console.log("in home");
+            }}
+          >
+            <NavLink
+              className="sidebar__item navlink"
+              exact
+              to={sidebarOptions[index].routes[0].route}
+            >
+              My Workspace
+            </NavLink>
+          </Menu.Item>
+
+          {array.map(function (item, i) {
+            console.log("i", i);
+            console.log(sidebarOptions[index].routes[i].route);
+            return (
+              <Menu.Item
+                id={sidebarOptions[index].routes[i].option}
+                className="sidebar__item"
+                icon={sidebarOptions[index].routes[i].icon}
+                key={item}
+              >
+                <NavLink
+                  className="sidebar__item navlink"
+                  exact
+                  to={sidebarOptions[index].routes[i].route}
+                >
+                  {sidebarOptions[index].routes[i].option}
+                </NavLink>
+              </Menu.Item>
+            );
+          })}
+          {/* <DisplayItem
             name={sidebarOptions[index].routes[0].option}
             icon={sidebarOptions[index].routes[0].icon}
             route={sidebarOptions[index].routes[0].route}
-          />
-          <DisplayItem
+          /> */}
+          {/* <DisplayItem
             name={sidebarOptions[index].routes[1].option}
             icon={sidebarOptions[index].routes[1].icon}
             route={sidebarOptions[index].routes[1].route}
@@ -67,7 +107,7 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
             name={sidebarOptions[index].routes[2].option}
             icon={sidebarOptions[index].routes[2].icon}
             route={sidebarOptions[index].routes[2].route}
-          />
+          /> */}
         </Menu>
       </Sider>
     </>

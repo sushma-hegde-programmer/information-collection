@@ -13,8 +13,12 @@ const DisplayItem: React.FC<Props> = ({ name, icon, route }) => {
   function renderOnBasisOfType(type: string) {
     if (type === "menu") {
       return (
-        <Menu className="sidebar__menu">
-          <Menu.Item className="sidebar__item" key={name} icon={icon}>
+        <Menu
+          className="sidebar__menu"
+          mode="inline"
+          defaultSelectedKeys={["1"]}
+        >
+          <Menu.Item className="sidebar__item" id={name} key={name} icon={icon}>
             <NavLink className="sidebar__item navlink" exact to={route}>
               {name}
             </NavLink>
