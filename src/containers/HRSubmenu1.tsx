@@ -1,6 +1,4 @@
 import React from "react";
-import { Layout, Breadcrumb } from "antd";
-const { Content } = Layout;
 
 function HRSubmenu1() {
   return (

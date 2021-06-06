@@ -2,7 +2,6 @@ import React from "react";
 import { Layout, Menu } from "antd";
 import careator_logo from "../../../images/careator-logo.svg";
 import { NavLink } from "react-router-dom";
-import DisplayItem from "./DisplayItem";
 import sidebarOptions from "./SidebarOptions";
 import "./PageSideBar.css";
 

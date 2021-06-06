@@ -23,8 +23,7 @@ Sider {
 }
 
 .ant-menu-item.ant-menu-item-active.ant-menu-item-selected.sidebar__item {
-  background-color: white !important;
-  /* background-color: white !important; /*Overriden property*/
+  background-color: white !important; /*Overriden property*/
   color: black;
 }
 
