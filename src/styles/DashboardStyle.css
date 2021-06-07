@@ -99,12 +99,13 @@ h3 {
 }
 
 @media only screen and (max-width: 768px) {
-  .ant-row {
+  /* Groot Team getting error because of this  */
+  /* .ant-row {
     display: grid;
     align-items: center;
     margin-top: -20px;
     position: fixed;
-  }
+  } */
   .card {
     width: 150px;
     height: 110px;

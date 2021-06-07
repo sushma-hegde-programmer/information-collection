@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import AppRouter from "./AppRouter";
 import LoginRouter from "./LoginRouter";
-import Login from "./components/Login";
+import "./App.css";
 
 function App() {
-  const [role, setRole] = useState("Candidate");
+  //take role from backend once the user logs in
+  const [role, setRole] = useState("Admin");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function loginAction() {
@@ -15,7 +16,7 @@ function App() {
     if (isLoggedIn) {
       return <AppRouter role={role} />;
     } else {
-      return <Login loginAction={loginAction} />; //<LoginRouter isLoggedIn={isLoggedIn}>
+      return <LoginRouter loginAction={loginAction} />;
     }
   }
 
