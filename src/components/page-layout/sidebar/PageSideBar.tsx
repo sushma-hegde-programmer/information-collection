@@ -3,6 +3,7 @@ import { Layout, Menu } from "antd";
 import careator_logo from "../../../images/careator-logo.svg";
 import { NavLink } from "react-router-dom";
 import sidebarOptions from "./SidebarOptions";
+import { LaptopOutlined } from "@ant-design/icons";
 import "./PageSideBar.css";
 
 const { Sider } = Layout;
@@ -19,7 +20,7 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
   }
   var index = sidebarOptions.findIndex((item) => item.role === role);
 
-  const item_array = [1, 2, 3];
+  const item_array = [1, 2];
 
   return (
     <>
@@ -27,7 +28,7 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
         <Menu
           className="sidebar__menu"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["workspace"]}
         >
           <Menu.Item key="image" className="sidebar__item image">
             <img
@@ -37,6 +38,20 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
               key="logo"
               className={imageClasses}
             />
+          </Menu.Item>
+          <Menu.Item
+            id="workspace"
+            className="sidebar__item workspace"
+            icon={<LaptopOutlined />}
+            key="workspace"
+          >
+            <NavLink
+              className="sidebar__item navlink"
+              exact
+              to={`/${role}/workspace`}
+            >
+              My Workspace
+            </NavLink>
           </Menu.Item>
           {/* if you write separate component to display menu Item, <Menu.Item></Menu.Item> should be written in that component
           that menu item will remain selected once it is selected. The ant default class will not be changed even though you select another menu item.

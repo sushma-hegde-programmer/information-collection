@@ -2,6 +2,7 @@
   background-color: #87bce8;
   display: flex;
   flex-wrap: wrap;
+  padding: 0;
 }
 .navbar__item {
   background-color: #87bce8;

@@ -1,7 +1,11 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "./reducers";
+import rootReducer from "./reducers/index";
+import logger from "redux-logger";
 
-const appStore = createStore(rootReducer, composeWithDevTools());
+const appStore = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger))
+);
 
 export default appStore;

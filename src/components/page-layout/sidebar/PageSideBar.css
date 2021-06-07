@@ -8,12 +8,14 @@ Sider {
   height: 100%;
   background-color: #87bce8;
 }
-.sidebar__item {
-  /* background-color: #87bce8; */
-}
-.sidebar__item:hover {
-  /* background-color: #87bce8; */
-  /* color: white; */
+
+.sidebar__item.workspace {
+  background-color: white;
+  /* border: 2px solid black; */
+  height: 3.125rem !important;
+  margin-top: 1.25rem !important;
+  font-family: "Franklin Gothic Medium";
+  margin-bottom: 1.25rem !important;
 }
 
 .sidebar__item.image {

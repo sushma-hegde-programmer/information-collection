@@ -1,11 +1,13 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  BrowserRouter as Router,
-  withRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import DashboardContent from "./components/DashboardContent";
+import PageLayout from "./containers/PageLayout";
+import ErrorPage from "./components/ErrorPage";
+import Login from "./containers/login";
+import ResetPassword from "./containers/ResetPassword";
+import CreateUserMain from "./containers/CreateUserMain";
+import UpdateMain from "./containers/UpdateMain";
+import EmployeeList from "./containers/EmployeeList";
 import AdminWorkspace from "./containers/AdminWorkspace";
 import RecruiterWorkspace from "./containers/RecruiterWorkspace";
 import CandidateWorkspace from "./containers/CandidateWorkspace";
@@ -24,22 +26,26 @@ import LeaderSubmenu1 from "./containers/LeaderSubmenu1";
 import LeaderSubmenu2 from "./containers/LeaderSubmenu2";
 import CandidateSubmenu1 from "./containers/CandidateSubmenu1";
 import CandidateSubmenu2 from "./containers/CandidateSubmenu2";
-import PageLayout from "./containers/PageLayout";
 
 type Props = {
   role: string;
 };
+
 const AppRouter: React.FC<Props> = ({ role }) => {
+  console.log("role", role);
   return (
     <Router>
       <PageLayout role={role}>
         <Switch>
+          <Route path={"/createuser"} component={CreateUserMain} />
+          <Route path={"/update"} component={UpdateMain} />
+
           <Route exact path="/admin/workspace" component={AdminWorkspace} />
           <Route exact path="/admin/dashboard" component={DashboardContent} />
           <Route
             exact
             path="/admin/manage-employees"
-            component={AdminMangeEmployees}
+            component={EmployeeList}
           />
 
           <Route
@@ -102,6 +108,8 @@ const AppRouter: React.FC<Props> = ({ role }) => {
             path="/candidate/submenu2"
             component={CandidateSubmenu2}
           />
+
+          {/* <Route component={ErrorPage} /> */}
         </Switch>
       </PageLayout>
     </Router>
