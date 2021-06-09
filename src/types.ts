@@ -6,25 +6,38 @@ export type LoginResponseType = {
   message: string;
   expiresIn: number;
   access_token: string;
+<<<<<<< HEAD
   userId: string;
+=======
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 };
 
 export type ForgotPasswordResType = {
   message: string;
   expiresIn: number;
   access_token: string;
+<<<<<<< HEAD
   userId: string;
+=======
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 };
 
 export type AppType = {
   userSession: UserSessionType;
   loading: boolean;
   emailError: any;
+<<<<<<< HEAD
   forgotToken: any;
 };
 
 export type UserSessionType = {
   user: LoginResponseType | null;
+=======
+};
+
+export type UserSessionType = {
+  user: object | null;
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   error: string | null;
   store: AppType | null;
 };
@@ -88,6 +101,7 @@ export type TableColumn = {
   dataIndex: string;
   key: string;
 };
+<<<<<<< HEAD
 
 export type SidebarOptionsType = {
   role: string;
@@ -115,3 +129,5 @@ export type mailTokenTypes = {
 export type resetPasswordType = {
   password: string;
 };
+=======
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { message, Form, Input, Select, Button, Space, Col, Row, Card } from "antd";
 import Layout, { Content } from "antd/lib/layout/layout";
 import React, { useState } from "react";
@@ -8,6 +9,13 @@ import EmployeeService from "../services/EmployeeService";
 import UserService from "../services/UserService";
 import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrumb";
 // import getEmployeeById from "../services/EmployeeService";
+=======
+import { message, Form, Input, Select, Button, Space, Col, Row } from "antd";
+import { Content } from "antd/lib/layout/layout";
+import React, { useState } from "react";
+import { Typography } from "antd";
+import { RoleType } from "../types";
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -15,6 +23,7 @@ type LayoutType = Parameters<typeof Form>[0]["layout"];
 
 type Props = {
   rolelist: RoleType[];
+<<<<<<< HEAD
   data: any;
   emails: string;
   mobiles: number;
@@ -87,6 +96,12 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
       }
       
   }
+=======
+};
+
+const CreateUser: React.FC<Props> = ({ rolelist }) => {
+  const [formLayout] = useState<LayoutType>("vertical");
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 
   const formItemLayout =
     formLayout === "vertical"
@@ -97,6 +112,7 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
       : null;
 
   const onFinish = async (values: any) => {
+<<<<<<< HEAD
     const {
       fname,
       lname,
@@ -125,12 +141,21 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
     message.success("User Update successfully");
     history.push("/admin/manage-employees");
     
+=======
+    const { fname, lname, designation, homenumber, manageId } = values;
+
+    message.success("User Update successfully");
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+<<<<<<< HEAD
 
+=======
+  const [form] = Form.useForm();
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   const onReset = () => {
     form.resetFields();
   };
@@ -151,6 +176,7 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
       </Select>
     </Form.Item>
   );
+<<<<<<< HEAD
   console.log(data);
   var breadcrumbText: string[] = ["My Worspace", "Manage Employees", "Update"];
   return (
@@ -160,13 +186,31 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
       {console.log(rolelist)}
       <Title level={2}>Update Employee</Title>
       {console.log(designations)}
+=======
+
+  return (
+    <Content
+      className="site-layout-background"
+      style={{
+        margin: "24px 16px",
+        padding: 24,
+        minHeight: 280,
+      }}
+    >
+      {console.log(rolelist)}
+      <Title level={2}>Update Employee</Title>
+
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
       <Form
         {...formItemLayout}
         layout={formLayout}
         name="basic"
         initialValues={{
           remember: true,
+<<<<<<< HEAD
           // fname: empData.firstName,
+=======
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -233,7 +277,11 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
           </Col>
           <Col xs={24} xl={12}>
             <Form.Item
+<<<<<<< HEAD
               name="email"
+=======
+              name={["your", "email"]}
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
               label="Email ID"
               rules={[
                 {
@@ -294,6 +342,7 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
                 style={{
                   width: 400,
                 }}
+<<<<<<< HEAD
                 defaultValue={defaultRole(designations.toLowerCase())}  
                 key={designations}
                 onSelect={(value) => { 
@@ -306,6 +355,12 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
                 {rolelist.map((val) => (
                   <Select.Option value={val.id} key={val.id}>
                     {val.description}
+=======
+              >
+                {rolelist.map((val) => (
+                  <Select.Option value={val.description} key={val.id}>
+                    {val.role}
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
                   </Select.Option>
                 ))}
               </Select>
@@ -320,6 +375,7 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
                 style={{
                   width: 400,
                 }}
+<<<<<<< HEAD
                 defaultValue={`${managersName}`}  
                 key={`${managersName}`} 
               >
@@ -328,6 +384,15 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
                       {val.firstName + " " + val.lastName}
                     </Select.Option>
                 ))}
+=======
+              >
+                <Select.Option value="Recruiter">Recruiter</Select.Option>
+                <Select.Option value="Hr">Hr</Select.Option>
+                <Select.Option value="AccountManager">
+                  AccountManager
+                </Select.Option>
+                <Select.Option value="Leader">Leader</Select.Option>
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
               </Select>
             </Form.Item>
           </Col>
@@ -339,14 +404,26 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
               Cancel
             </Button>
             <Button type="primary" htmlType="submit">
+<<<<<<< HEAD
               Submit
+=======
+              Update
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
             </Button>
           </Space>
         </Form.Item>
       </Form>
+<<<<<<< HEAD
     </Card>
     </Layout>
   );
 };
 
 export default Update;
+=======
+    </Content>
+  );
+};
+
+export default CreateUser;
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7

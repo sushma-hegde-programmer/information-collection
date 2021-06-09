@@ -1,10 +1,16 @@
 import { Button, Col, Form, Input, message, Row, Space } from "antd";
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+=======
+
+import React, { useState } from "react";
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 import "./login.css";
 import { useHistory } from "react-router";
 import Logo from "../components/Logo";
 import RecruiterImg from "../components/RecruiterImg";
 import styles from "../styles/style";
+<<<<<<< HEAD
 import axios from "axios";
 import constants from "../constants";
 import { ForgotPasswordResType, resetPasswordType } from "../types";
@@ -14,6 +20,11 @@ const ResetPassword = () => {
   const [userId, setUserId] = useState("");
   const [token, setToken] = useState("");
   const [tokenurl, setTokenurl] = useState("");
+=======
+const ResetPassword: React.FC = () => {
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   const history = useHistory();
   const su = () => {
     message.success("password Changed Successfully");
@@ -24,6 +35,7 @@ const ResetPassword = () => {
   const success = () => {
     password === cpassword ? su() : message.error("password not matching");
   };
+<<<<<<< HEAD
   console.log("qqqqqqqqqqqqq", userId);
 
   useEffect(() => {
@@ -59,6 +71,9 @@ const ResetPassword = () => {
       .catch((e) => Promise.reject(e.response.data));
   };
   console.log("gffgfffffffffff", password);
+=======
+
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   return (
     <>
       <Logo />
@@ -76,7 +91,10 @@ const ResetPassword = () => {
             layout="vertical"
             className="login-form"
             initialValues={{ remember: true }}
+<<<<<<< HEAD
             onFinish={onFinish}
+=======
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
           >
             <Form.Item
               label="New Password"
@@ -88,7 +106,11 @@ const ResetPassword = () => {
               <Input.Password
                 placeholder="Enter New Password"
                 value={password}
+<<<<<<< HEAD
                 onChange={(e: any) => setPassword(e.target.value)}
+=======
+                onChange={(e) => setPassword(e.target.value)}
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
                 style={styles.borderRadius}
               />
             </Form.Item>
@@ -103,7 +125,11 @@ const ResetPassword = () => {
                 placeholder="Confirm your Password"
                 style={styles.borderRadius}
                 value={cpassword}
+<<<<<<< HEAD
                 onChange={(e: any) => setCpassword(e.target.value)}
+=======
+                onChange={(e) => setCpassword(e.target.value)}
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
               />
             </Form.Item>
 
@@ -112,7 +138,11 @@ const ResetPassword = () => {
                 <Button
                   type="primary"
                   style={styles.borderRadius}
+<<<<<<< HEAD
                   // onClick={co}
+=======
+                  onClick={success}
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
                   htmlType="submit"
                 >
                   Reset

@@ -20,6 +20,11 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
   }
   var index = sidebarOptions.findIndex((item) => item.role === role);
 
+<<<<<<< HEAD
+=======
+  const item_array = [1, 2];
+
+>>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   return (
     <>
       <Sider trigger={null} collapsible collapsed={collapsed}>
