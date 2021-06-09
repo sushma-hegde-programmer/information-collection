@@ -1,6 +1,5 @@
 import React from "react";
 import Update from "../components/Update";
-<<<<<<< HEAD
 import { RoleType } from "../types";
 import RoleService from "../services/RoleService";
 import EmployeeService from "../services/EmployeeService";
@@ -101,42 +100,3 @@ class UpdateMain extends React.Component {
 }
 
 export default UpdateMain;
-=======
-import {RoleType} from "../types";
-import RoleService from "../services/RoleService";
-
-type Props = {};
-type State = {
-    roledata: RoleType[];
-};
-
-class UpdateMain extends React.Component {
-    state: State = {
-        roledata: []
-    }
-    componentDidMount(){
-        this.getRoles();
-    }
-    async getRoles(){
-        try{
-
-            const {data} = await RoleService.getRoles()
-            console.log(data);
-            this.setState({
-                roledata: data
-            })
-        }catch(e){
-            console.log(e);
-        }
-    }
-    render() {
-        return(
-            <div>
-                <Update rolelist={this.state.roledata}/>
-            </div>
-        );
-    }
-};
-
-export default UpdateMain;
->>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7

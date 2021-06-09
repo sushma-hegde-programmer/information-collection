@@ -4,7 +4,7 @@ import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrum
 const { Content } = Layout;
 
 function AdminWorkspace() {
-  var breadcrumbText: string[] = ["My Worspace"];
+  var breadcrumbText: string[] = ["My Workspace"];
   return (
     <div>
       <Layout

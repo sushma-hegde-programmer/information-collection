@@ -30,17 +30,17 @@ const RecruiterRouter: React.FC<Props> = ({ role }) => {
           />
           <Route
             exact
-            path="/recruiter/dashboard"
+            path="/Recruiter/dashboard"
             component={RecruiterDashboard}
           />
           <Route
             exact
-            path="/recruiter/manage-clients"
+            path="/Recruiter/manage-clients"
             component={RecruiterManageClients}
           />
           <Route
             exact
-            path="/recruiter/manage-candidates"
+            path="/Recruiter/manage-candidates"
             component={RecruiterManageCandidates}
           />
         </Switch>

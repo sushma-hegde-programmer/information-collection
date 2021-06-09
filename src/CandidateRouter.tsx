@@ -29,12 +29,12 @@ const CandidateRouter: React.FC<Props> = ({ role }) => {
           />
           <Route
             exact
-            path="/candidate/submenu1"
+            path="/Candidate/submenu1"
             component={CandidateSubmenu1}
           />
           <Route
             exact
-            path="/candidate/submenu2"
+            path="/Candidate/submenu2"
             component={CandidateSubmenu2}
           />
         </Switch>

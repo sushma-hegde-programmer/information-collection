@@ -23,8 +23,8 @@ const LeaderRouter: React.FC<Props> = ({ role }) => {
             }}
           />
           <Route exact path="/Leader/workspace" component={LeaderWorkspace} />
-          <Route exact path="/leader/submenu1" component={LeaderSubmenu1} />
-          <Route exact path="/leader/submenu2" component={LeaderSubmenu2} />
+          <Route exact path="/Leader/submenu1" component={LeaderSubmenu1} />
+          <Route exact path="/Leader/submenu2" component={LeaderSubmenu2} />
         </Switch>
       </PageLayout>
     </Router>

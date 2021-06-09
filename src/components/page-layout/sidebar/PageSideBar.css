@@ -10,12 +10,7 @@ Sider {
 }
 
 .sidebar__item.workspace {
-<<<<<<< HEAD
   background-color: white;  
-=======
-  background-color: white;
-  /* border: 2px solid black; */
->>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
   height: 3.125rem !important;
   margin-top: 1.25rem !important;
   font-family: "Franklin Gothic Medium";

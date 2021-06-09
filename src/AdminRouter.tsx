@@ -24,10 +24,10 @@ const AdminRouter: React.FC<Props> = ({ role }) => {
             }}
           />
           <Route exact path="/Admin/workspace" component={AdminWorkspace} />
-          <Route exact path="/admin/dashboard" component={DashboardContent} />
+          <Route exact path="/Admin/dashboard" component={DashboardContent} />
           <Route
             exact
-            path="/admin/manage-employees"
+            path="/Admin/manage-employees"
             component={EmployeeList}
           />
           <Route path={"/createuser"} component={CreateUserMain} />

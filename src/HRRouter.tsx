@@ -23,8 +23,8 @@ const HRRouter: React.FC<Props> = ({ role }) => {
             }}
           />
           <Route exact path="/HR/workspace" component={HRWorkspace} />
-          <Route exact path="/hr/submenu1" component={HRSubmenu1} />
-          <Route exact path="/hr/submenu2" component={HRSubmenu2} />
+          <Route exact path="/HR/submenu1" component={HRSubmenu1} />
+          <Route exact path="/HR/submenu2" component={HRSubmenu2} />
         </Switch>
       </PageLayout>
     </Router>

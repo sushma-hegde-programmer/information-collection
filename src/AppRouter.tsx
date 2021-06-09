@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
 import AdminRouter from "./AdminRouter";
 import RecruiterRouter from "./RecruiterRouter";
 import HRRouter from "./HRRouter";
@@ -9,60 +8,11 @@ import CandidateRouter from "./CandidateRouter";
 import UserService from "./services/UserService";
 import { connect } from "react-redux";
 import { AppType, UserSessionType } from "./types";
-=======
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import DashboardContent from "./components/DashboardContent";
-import PageLayout from "./containers/PageLayout";
-import ErrorPage from "./components/ErrorPage";
-import Login from "./containers/login";
-import ResetPassword from "./containers/ResetPassword";
-import CreateUserMain from "./containers/CreateUserMain";
-import UpdateMain from "./containers/UpdateMain";
-import EmployeeList from "./containers/EmployeeList";
-import AdminWorkspace from "./containers/AdminWorkspace";
-import RecruiterWorkspace from "./containers/RecruiterWorkspace";
-import CandidateWorkspace from "./containers/CandidateWorkspace";
-import LeaderWorkspace from "./containers/LeaderWorkspace";
-import AMWorkspace from "./containers/AMWorkspace";
-import HRWorkspace from "./containers/HRWorkspace";
-import AdminMangeEmployees from "./containers/AdminMangeEmployees";
-import RecruiterDashboard from "./containers/RecruiterDashboard";
-import RecruiterManageClients from "./containers/RecruiterManageClients";
-import RecruiterManageCandidates from "./containers/RecruiterManageCandidates";
-import HRSubmenu1 from "./containers/HRSubmenu1";
-import HRSubmenu2 from "./containers/HRSubmenu2";
-import AMSubmenu1 from "./containers/AMSubmenu1";
-import AMSubmenu2 from "./containers/AMSubmenu2";
-import LeaderSubmenu1 from "./containers/LeaderSubmenu1";
-import LeaderSubmenu2 from "./containers/LeaderSubmenu2";
-import CandidateSubmenu1 from "./containers/CandidateSubmenu1";
-import CandidateSubmenu2 from "./containers/CandidateSubmenu2";
->>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 
 type State = {
   role: string;
   gotData: boolean;
 };
-<<<<<<< HEAD
-=======
-
-const AppRouter: React.FC<Props> = ({ role }) => {
-  console.log("role", role);
-  return (
-    <Router>
-      <PageLayout role={role}>
-        <Switch>
-          <Route path={"/createuser"} component={CreateUserMain} />
-          <Route path={"/update"} component={UpdateMain} />
-
-          <Route exact path="/admin/workspace" component={AdminWorkspace} />
-          <Route exact path="/admin/dashboard" component={DashboardContent} />
-          <Route
-            exact
-            path="/admin/manage-employees"
-            component={EmployeeList}
-          />
->>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 
 type Props = {
   userData: UserSessionType;
@@ -95,7 +45,6 @@ class AppRouter extends React.Component<Props, State> {
     }
   }
 
-<<<<<<< HEAD
   render() {
     switch (this.state.role) {
       case "Admin":
@@ -143,28 +92,5 @@ const mapStoreToProps = (store: AppType) => {
   return {
     userData: store.userSession,
   };
-=======
-          <Route
-            exact
-            path="/candidate/workspace"
-            component={CandidateWorkspace}
-          />
-          <Route
-            exact
-            path="/candidate/submenu1"
-            component={CandidateSubmenu1}
-          />
-          <Route
-            exact
-            path="/candidate/submenu2"
-            component={CandidateSubmenu2}
-          />
-
-          {/* <Route component={ErrorPage} /> */}
-        </Switch>
-      </PageLayout>
-    </Router>
-  );
->>>>>>> 34b230427f3c50e6af7babd43e9034b74ff5ffe7
 };
 export default connect(mapStoreToProps)(AppRouter);

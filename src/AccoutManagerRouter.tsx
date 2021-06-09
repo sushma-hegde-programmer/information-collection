@@ -19,24 +19,12 @@ const AccoutManagerRouter: React.FC<Props> = ({ role }) => {
             exact
             path="/"
             render={() => {
-              return <Redirect to="/Account Manager/workspace" />;
+              return <Redirect to="/BDM/workspace" />;
             }}
           />
-          <Route
-            exact
-            path="/Account Manager/workspace"
-            component={AMWorkspace}
-          />
-          <Route
-            exact
-            path="/account_manager/submenu1"
-            component={AMSubmenu1}
-          />
-          <Route
-            exact
-            path="/account_manager/submenu2"
-            component={AMSubmenu2}
-          />
+          <Route exact path="/BDM/workspace" component={AMWorkspace} />
+          <Route exact path="/BDM/submenu1" component={AMSubmenu1} />
+          <Route exact path="/BDM/submenu2" component={AMSubmenu2} />
         </Switch>
       </PageLayout>
     </Router>

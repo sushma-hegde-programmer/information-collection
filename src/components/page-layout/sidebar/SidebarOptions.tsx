@@ -48,7 +48,7 @@ const sidebarOptions: SidebarOptionsType[] = [
       {
         option: "Manage Candidates",
         icon: <UsergroupDeleteOutlined />,
-        route: recruiter_routes[2],
+        route: recruiter_routes[3],
       },
     ],
   },
@@ -68,7 +68,7 @@ const sidebarOptions: SidebarOptionsType[] = [
     ],
   },
   {
-    role: "Account Manager",
+    role: "BDM",
     routes: [
       {
         option: "AM Sub 1",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./PageNavBar.css";
 import { Avatar, Popover } from "antd";
+import UserInfo from "./UserInfo";
 import { MessageOutlined, BellOutlined, MenuOutlined } from "@ant-design/icons";
 
 type Props = {
@@ -28,7 +29,7 @@ const PageNavBar: React.FC<Props> = ({ toggle }) => {
         <MessageOutlined />
       </div>
       <Popover
-        content={<a onClick={hide}>Sign Out</a>}
+        content={<UserInfo />}
         title=""
         trigger="click"
         visible={visible}

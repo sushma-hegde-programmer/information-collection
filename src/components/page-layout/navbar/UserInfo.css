@@ -1,0 +1,6 @@
+@import "~antd/dist/antd.css";
+
+.userinfo {
+  background-color: white;
+  width: 5.625rem;
+}
