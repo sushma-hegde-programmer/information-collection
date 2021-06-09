@@ -1,19 +1,17 @@
 import React from "react";
 import { Layout, Breadcrumb } from "antd";
+import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrumb";
 const { Content } = Layout;
 
 function AdminWorkspace() {
+  var breadcrumbText: string[] = ["My Worspace"];
   return (
     <div>
       <Layout
         style={{ padding: "0 24px 24px" }}
         className="site-layout-background"
       >
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
+        <DisplayBreadcrumb breadcrumbText={breadcrumbText} />
         <Content
           className="site-layout-background"
           style={{

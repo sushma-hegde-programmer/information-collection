@@ -1,40 +1,50 @@
-import { data } from "./DashboardData";
-import React from "react";
+import { dashboarddata } from "./DashboardData";
+import React, { useEffect, useState } from "react";
 import { Layout, Breadcrumb, Row, Card } from "antd";
 import Breadcrumbs from "./Breadcrumbs";
 import "../styles/DashboardStyle.css";
+import DashboardService from "../services/DashboardService";
 
 const { Content } = Layout;
 
-if (data[0].role === "Recruiters") {
-  var recruiter = data[0];
+if (dashboarddata[0].role === "Recruiters") {
+  var recruiter = dashboarddata[0];
 }
-if (data[1].role === "Acoount Manager") {
-  var accManager = data[1];
+if (dashboarddata[1].role === "Acoount Manager") {
+  var accManager = dashboarddata[1];
 }
-if (data[2].role === "HR") {
-  var hr = data[2];
+if (dashboarddata[2].role === "HR") {
+  var hr = dashboarddata[2];
 }
-if (data[3].role === "Leader") {
-  var leader = data[3];
+if (dashboarddata[3].role === "Leader") {
+  var leader = dashboarddata[3];
 }
 
 function DashboardContent() {
+  const [role, setRole] = useState([])
+
+  useEffect(() => { dashboardGetData() })
+  const dashboardGetData = async () => {
+    const { data } = await DashboardService.getDashContents()
+  //   console.log("data------", data)
+    
+  }
+  // console.log("role------", dashboardGetData);
   return (
     <Row>
       <Layout>
         <Content className="content">
           <Breadcrumbs />
           <div className="background">
-            <div className="ant-row">
+            <div className="ant-row dashboard">
               <div className="ant-col ant-col-6">
                 <Card
                   className="card"
                   style={{ background: "#e6f7ff" }}
                   hoverable
                 >
-                  <h1 className="bigNumbers">{recruiter.userCount}</h1>
-                  <h4>{recruiter.role}</h4>
+                  <h1 className="bigNumbers">{role}</h1>
+                  <h4>{role}</h4>
                 </Card>
               </div>
 

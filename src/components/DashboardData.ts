@@ -1,4 +1,4 @@
-export const data = [
+export const dashboarddata = [
   {
     role: "Recruiters",
     userCount: 236,

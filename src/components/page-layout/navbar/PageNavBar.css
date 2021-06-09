@@ -1,3 +1,4 @@
+@import "~antd/dist/antd.css";
 .navbar {
   background-color: #87bce8;
   display: flex;

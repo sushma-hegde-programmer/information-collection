@@ -28,6 +28,7 @@ const LoginForm: React.FC<Props> = ({
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
   const error: any = useSelector<AppType>((state) => state.userSession.error);
   //const state = useSelector<AppType>((state) => state.loading);
 
@@ -46,23 +47,24 @@ const LoginForm: React.FC<Props> = ({
     try {
       showLoader();
       const { data } = await UserService.login(email, password);
-      console.log("hello", data);
       await StorageService.storeData("token", data.access_token);
+      console.log("hello", data);
       window.localStorage.setItem("email", JSON.stringify(email));
       window.localStorage.setItem("password", JSON.stringify(password));
-
+      window.localStorage.setItem("userId", JSON.stringify(userId));
       loginSucess(data);
+      setUserId(data.userId);
+      {
+        loginAction();
+      }
       hideLoader();
-      history.push("/Home");
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       loginError(e.message.toString());
       hideLoader();
     }
   };
-  const logout = () => {
-    window.localStorage.clear();
-  };
+
   return (
     <>
       <h2>Login</h2>
@@ -78,13 +80,18 @@ const LoginForm: React.FC<Props> = ({
         <Form.Item
           label="Email"
           name="email"
-          rules={[{ required: true, message: "Please input your email!" }]}
+          rules={[
+            {
+              required: true,
+              message: "Please enter valid email!!",
+              type: "email",
+            },
+          ]}
         >
           <Input
             placeholder="Enter Your Email Id"
             style={styles.borderRadius}
             value={email}
-            defaultValue={JSON.parse(item)}
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Item>
@@ -96,7 +103,6 @@ const LoginForm: React.FC<Props> = ({
           <Input.Password
             placeholder="Enter Your PassWord"
             value={password}
-            defaultValue={JSON.parse(pass)}
             onChange={(e) => setPassword(e.target.value)}
             style={styles.borderRadius}
           />
@@ -111,12 +117,7 @@ const LoginForm: React.FC<Props> = ({
           </Link>
         </Form.Item>
         <Form.Item>
-          <Button
-            type="primary"
-            onClick={loginAction}
-            style={styles.borderRadius}
-            htmlType="submit"
-          >
+          <Button type="primary" style={styles.borderRadius} htmlType="submit">
             Login
           </Button>
         </Form.Item>

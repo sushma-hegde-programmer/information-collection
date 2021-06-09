@@ -1,14 +1,19 @@
 import { Button, Col, Form, Input, message, Row, Space } from "antd";
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import { useHistory } from "react-router";
 import Logo from "../components/Logo";
 import RecruiterImg from "../components/RecruiterImg";
 import styles from "../styles/style";
-const ResetPassword: React.FC = () => {
+import axios from "axios";
+import constants from "../constants";
+import { ForgotPasswordResType, resetPasswordType } from "../types";
+const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+  const [tokenurl, setTokenurl] = useState("");
   const history = useHistory();
   const su = () => {
     message.success("password Changed Successfully");
@@ -19,7 +24,41 @@ const ResetPassword: React.FC = () => {
   const success = () => {
     password === cpassword ? su() : message.error("password not matching");
   };
+  console.log("qqqqqqqqqqqqq", userId);
 
+  useEffect(() => {
+    setUserId(window.location.pathname.split("/")[2]);
+    setTokenurl(JSON.stringify(window.location.pathname.split("/")[3]));
+    GetUserId();
+  });
+
+  const GetUserId = async () => {
+    const url = `${constants.BASE_URL}/auth/${userId}`;
+    console.log("urlData", url);
+    return axios
+      .get(url)
+      .then((data) => setToken(data.data.userToken))
+      .catch((e) => Promise.reject(e.response.data));
+  };
+
+  console.log("database", token);
+  console.log("url email", tokenurl);
+  const onFinish = () => {
+    token !== tokenurl ? passToken() : console.log("diffrent");
+    //history.push("/");
+    // passToken();
+    setTimeout(() => {
+      window.location.href = "/";
+    });
+  };
+  const passToken = async () => {
+    const url = `${constants.BASE_URL}/auth/forgot/${userId}`;
+    console.log("urlData", url);
+    return axios
+      .put<resetPasswordType>(url, { password })
+      .catch((e) => Promise.reject(e.response.data));
+  };
+  console.log("gffgfffffffffff", password);
   return (
     <>
       <Logo />
@@ -37,6 +76,7 @@ const ResetPassword: React.FC = () => {
             layout="vertical"
             className="login-form"
             initialValues={{ remember: true }}
+            onFinish={onFinish}
           >
             <Form.Item
               label="New Password"
@@ -48,7 +88,7 @@ const ResetPassword: React.FC = () => {
               <Input.Password
                 placeholder="Enter New Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: any) => setPassword(e.target.value)}
                 style={styles.borderRadius}
               />
             </Form.Item>
@@ -63,7 +103,7 @@ const ResetPassword: React.FC = () => {
                 placeholder="Confirm your Password"
                 style={styles.borderRadius}
                 value={cpassword}
-                onChange={(e) => setCpassword(e.target.value)}
+                onChange={(e: any) => setCpassword(e.target.value)}
               />
             </Form.Item>
 
@@ -72,7 +112,7 @@ const ResetPassword: React.FC = () => {
                 <Button
                   type="primary"
                   style={styles.borderRadius}
-                  onClick={success}
+                  // onClick={co}
                   htmlType="submit"
                 >
                   Reset

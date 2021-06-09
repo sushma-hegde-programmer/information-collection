@@ -13,9 +13,10 @@ import {
   leader_routes,
   candidate_routes,
 } from "../../../Routes";
+import { SidebarOptionsType } from "../../../types";
 
 console.log(admin_routes);
-const sidebarOptions = [
+const sidebarOptions: SidebarOptionsType[] = [
   {
     role: "Admin",
     routes: [

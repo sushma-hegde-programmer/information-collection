@@ -1,10 +1,19 @@
 @import "~antd/dist/antd.css";
-
 .pagelayout__content {
-  padding: 0 1.5rem;
-  height: 100vh;
+    padding: 0 1.5rem;
 }
 
 .pagelayout__footer {
-  text-align: center;
+    text-align: center;
+    margin-top: 1rem;
+    /* width: 10rem; */
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 514px) {
+    .pagelayout__footer {
+        /* margin-left:10rem ; */
+        width: 19rem;
+        position: relative;
+        top: -1rem;
+    }
 }

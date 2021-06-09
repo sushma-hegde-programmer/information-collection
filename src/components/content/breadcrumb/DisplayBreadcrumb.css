@@ -1,0 +1,5 @@
+@import "~antd/dist/antd.css";
+
+.breadcrumb {
+  margin: 0.625rem 0;
+}

@@ -1,8 +1,13 @@
-import { message, Form, Input, Select, Button, Space, Col, Row } from "antd";
-import { Content } from "antd/lib/layout/layout";
+import { message, Form, Input, Select, Button, Space, Col, Row, Card } from "antd";
+import Layout, { Content } from "antd/lib/layout/layout";
 import React, { useState } from "react";
+import {useHistory} from "react-router";
 import { Typography } from "antd";
 import { RoleType } from "../types";
+import EmployeeService from "../services/EmployeeService";
+import UserService from "../services/UserService";
+import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrumb";
+// import getEmployeeById from "../services/EmployeeService";
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -10,10 +15,78 @@ type LayoutType = Parameters<typeof Form>[0]["layout"];
 
 type Props = {
   rolelist: RoleType[];
+  data: any;
+  emails: string;
+  mobiles: number;
+  managers: number;
+  click: (value: any) => void;
+  reports: [];
+  usersId: string;
+  managersName: string;
+  designations: string;
 };
 
-const CreateUser: React.FC<Props> = ({ rolelist }) => {
+const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, click, reports, usersId, managersName,designations }) => {
   const [formLayout] = useState<LayoutType>("vertical");
+  const [form] = Form.useForm();
+  const [empData, changeEmp] = useState();
+  const [userData, changeUser] = useState({ mobile: 0 });
+  const [initRole, changeRole] = useState(designations);
+  const history = useHistory();
+
+  const noRerender = () => {
+    if (data != empData) {
+      changeEmp(data);
+      changeUser(data.userId);
+      //console.log("Manager Id",managers);
+      console.log("Update line 37", empData)
+      console.log("Managers first name: ", managersName);
+      form.setFieldsValue({
+        fname: data.firstName,
+        lname: data.lastName,
+        designation: data.designation, 
+        mobnumber: mobiles,
+        home: data.homePhone,
+        email: emails,
+        //role: data.managerId = 1 ? "Leadership/Management" : data.managerId = 2 ? "Account Manager" : data.managerId = 3 ? "Human Resource" : data.managerId = 4 ? "Recruiter" : data.managerId = 5 ? "Candidate" : "Admin",
+        // manageId: EmployeeService.getEmployeeNameById(data.managerId).then(() => { 
+        //   console.log(data);
+        // })
+        //manageId: managersName
+      });
+    }
+  }; 
+
+  // React.useEffect(() => {
+  //   form.setFieldsValue({
+  //     fname: "Bamboo",
+  //   });
+  // }, []);
+
+  noRerender();
+
+  const defaultRole = (desig: string) => {
+    console.log("Manager comes in default role", desig);
+      if(desig==="leader"){
+        return "Leadership/Management"
+      }
+      else if(desig==="bdm"){
+        return "Account Manager/BD/CRM"
+      }
+      else if(desig==="hr"){
+        return "Human Resource"
+      }
+      else if(desig==="recruiter"){
+        return "Recruiter"
+      }
+      else if(desig==="candidate"){ 
+        return "Candidate"
+      }
+      else {
+        return "Administrator"
+      }
+      
+  }
 
   const formItemLayout =
     formLayout === "vertical"
@@ -24,15 +97,40 @@ const CreateUser: React.FC<Props> = ({ rolelist }) => {
       : null;
 
   const onFinish = async (values: any) => {
-    const { fname, lname, designation, homenumber, manageId } = values;
+    const {
+      fname,
+      lname,
+      mobnumber,
+      home,
+      manageId,
+      email,
+      designation,
+      role,
+    } = values;
+
+    const data = {
+      firstName: fname,
+      lastName: lname,
+      mobile: mobnumber,
+      email: email,
+      roleId: role,
+      managerId: manageId,
+      designation: designation,
+      homePhone: home,
+      userId : usersId
+    };
+    console.log("Datasent for updation",data);
+    const updateEmp = await UserService.updateEmployee(data); 
 
     message.success("User Update successfully");
+    history.push("/admin/manage-employees");
+    
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-  const [form] = Form.useForm();
+
   const onReset = () => {
     form.resetFields();
   };
@@ -53,25 +151,22 @@ const CreateUser: React.FC<Props> = ({ rolelist }) => {
       </Select>
     </Form.Item>
   );
-
+  console.log(data);
+  var breadcrumbText: string[] = ["My Worspace", "Manage Employees", "Update"];
   return (
-    <Content
-      className="site-layout-background"
-      style={{
-        margin: "24px 16px",
-        padding: 24,
-        minHeight: 280,
-      }}
-    >
+    <Layout>
+    <DisplayBreadcrumb breadcrumbText={breadcrumbText} />
+    <Card title="" bordered={true} style={{ width: "100%", margin: 10 }}>
       {console.log(rolelist)}
       <Title level={2}>Update Employee</Title>
-
+      {console.log(designations)}
       <Form
         {...formItemLayout}
         layout={formLayout}
         name="basic"
         initialValues={{
           remember: true,
+          // fname: empData.firstName,
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -138,7 +233,7 @@ const CreateUser: React.FC<Props> = ({ rolelist }) => {
           </Col>
           <Col xs={24} xl={12}>
             <Form.Item
-              name={["your", "email"]}
+              name="email"
               label="Email ID"
               rules={[
                 {
@@ -199,10 +294,18 @@ const CreateUser: React.FC<Props> = ({ rolelist }) => {
                 style={{
                   width: 400,
                 }}
+                defaultValue={defaultRole(designations.toLowerCase())}  
+                key={designations}
+                onSelect={(value) => { 
+                  click(value);
+                }}
+                // onChange={(value) => {
+                //   click(value);
+                // }}
               >
                 {rolelist.map((val) => (
-                  <Select.Option value={val.description} key={val.id}>
-                    {val.role}
+                  <Select.Option value={val.id} key={val.id}>
+                    {val.description}
                   </Select.Option>
                 ))}
               </Select>
@@ -217,13 +320,14 @@ const CreateUser: React.FC<Props> = ({ rolelist }) => {
                 style={{
                   width: 400,
                 }}
+                defaultValue={`${managersName}`}  
+                key={`${managersName}`} 
               >
-                <Select.Option value="Recruiter">Recruiter</Select.Option>
-                <Select.Option value="Hr">Hr</Select.Option>
-                <Select.Option value="AccountManager">
-                  AccountManager
-                </Select.Option>
-                <Select.Option value="Leader">Leader</Select.Option>
+                {reports.map((val: any) => (
+                    <Select.Option value={val.userId} key={val.id}>
+                      {val.firstName + " " + val.lastName}
+                    </Select.Option>
+                ))}
               </Select>
             </Form.Item>
           </Col>
@@ -235,13 +339,14 @@ const CreateUser: React.FC<Props> = ({ rolelist }) => {
               Cancel
             </Button>
             <Button type="primary" htmlType="submit">
-              Update
+              Submit
             </Button>
           </Space>
         </Form.Item>
       </Form>
-    </Content>
+    </Card>
+    </Layout>
   );
 };
 
-export default CreateUser;
+export default Update;

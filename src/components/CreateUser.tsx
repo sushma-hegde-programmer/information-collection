@@ -1,353 +1,346 @@
-import { message, Form, Input, Select, Button, Space, Col, Row } from "antd";
+import {
+  message,
+  Form,
+  Input,
+  Select,
+  Button,
+  Space,
+  Col,
+  Row,
+  Layout,
+  Breadcrumb,
+  Card,
+} from "antd";
 import { Content } from "antd/lib/layout/layout";
 import React, { useState, useEffect } from "react";
+import {useHistory} from "react-router"
 import UserService from "../services/UserService";
 import { Typography } from "antd";
 import { RoleType, UserType, EmployeeType } from "../types";
-import { validateLocaleAndSetLanguage } from "typescript";
-import { OmitProps } from "antd/lib/transfer/ListBody";
+import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrumb";
+import "../styles/Form.css";
 const { Title } = Typography;
 const { Option } = Select;
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
 type Props = {
-    rolelist: RoleType[];
-    click: (value: any) => void;
-    reports: [];
+  rolelist: RoleType[];
+  click: (value: any) => void;
+  reports: [];
 };
 
 const CreateUser: React.FC<Props> = ({ rolelist, click, reports }) => {
-    const [formLayout] = useState<LayoutType>("vertical");
-    const [email, changeEmail] = useState("");
-    const [mobile, changeMob] = useState(0);
-    const [report, changeReport] = useState([]);
+  const [formLayout] = useState<LayoutType>("vertical");
+  const [email, changeEmail] = useState("");
+  const [mobile, changeMob] = useState(0);
+  const [report, changeReport] = useState([]);
+  const history = useHistory();
 
-    const formItemLayout =
-        formLayout === "vertical"
-            ? {
-                  labelCol: { span: 4 },
-                  wrapperCol: { span: 6 },
-              }
-            : null;
-
-    const onFinish = async (values: any) => {
-        console.log(values);
-        const {
-            fname,
-            lname,
-            mobphone,
-            homenumber,
-            manageId,
-            email,
-            designation,
-            role,
-        } = values;
-
-        console.log(fname, lname);
-        const data = {
-            firstName: fname,
-            lastName: lname,
-            mobile: mobphone,
-            email: email,
-            roleId: role,
-            managerId: manageId,
-            designation: designation,
-            homePhone: homenumber,
-        };
-        const test1 = () => {
-            console.log("test1 start");
-            const employee = UserService.createEmployee(data);
-            console.log("test1 end");
-        };
-        const test1ok = test1();
-        message.success("User Create successfully");
-    };
-
-    const createUser = (e: any) => {
-        console.log(email, mobile);
-        const data = {
-            firstName: "arsh",
-            lastName: "salim",
-            mobile: mobile,
-            email: email,
-            roleId: 4,
-            managerId: 100,
-            designation: "HR",
-            homePhone: 2446553,
-        };
-        if (email && mobile) {
-            const user = UserService.createUser(data);
+  const formItemLayout =
+    formLayout === "vertical"
+      ? {
+          labelCol: { span: 16 },
+          wrapperCol: { span: 24 },
         }
+      : null;
+
+  const onFinish = async (values: any) => {
+    console.log(values);
+    const {
+      fname,
+      lname,
+      mobphone,
+      homenumber,
+      manageId,
+      email,
+      designation,
+      role,
+    } = values;
+
+    console.log(fname, lname);
+    const data = {
+      firstName: fname,
+      lastName: lname,
+      mobile: mobphone,
+      email: email,
+      roleId: role,
+      managerId: manageId,
+      designation: designation,
+      homePhone: homenumber,
     };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log("Failed:", errorInfo);
+    const test1 = () => {
+      console.log("test1 start");
+      const employee = UserService.createEmployee(data);
+      console.log("test1 end");
     };
+    const test1ok = test1();
+    message.success("User Create successfully");
+    history.push("/admin/manage-employees");
+  };
 
-    const [form] = Form.useForm();
-
-    const onReset = () => {
-        form.resetFields();
+  const createUser = (e: any) => {
+    console.log(email, mobile);
+    const data = {
+      firstName: "arsh",
+      lastName: "salim",
+      mobile: mobile,
+      email: email,
+      roleId: 4,
+      managerId: 100,
+      designation: "HR",
+      homePhone: 2446553,
     };
+    if (email && mobile) {
+      const user = UserService.createUser(data);
+    }
+  };
 
-    const prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select style={{ width: 70 }}>
-                <Option value="91">+91</Option>
-                <Option value="1">+1</Option>
-            </Select>
-        </Form.Item>
-    );
-    const phoneHome = (
-        <Form.Item name="phonehome" noStyle>
-            <Select style={{ width: 70 }}>
-                <Option value="91">+91</Option>
-                <Option value="1">+1</Option>
-            </Select>
-        </Form.Item>
-    );
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
 
-    const emailChange = (e: any) => {
-        changeEmail(e.target.value);
-    };
+  const [form] = Form.useForm();
 
-    const mobileChange = (e: any) => {
-        changeMob(e.target.value);
-    };
+  const onReset = () => {
+    form.resetFields();
+  };
 
-    const getEmployee = async (value: any) => {
-        const empdata: any = await UserService.getEmployee(value);
-        console.log(empdata);
-        changeReport(empdata.data);
-        console.log(report);
-    };
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select style={{ width: 70 }}>
+        <Option value="91">+91</Option>
+        <Option value="1">+1</Option>
+      </Select>
+    </Form.Item>
+  );
+  const phoneHome = (
+    <Form.Item name="phonehome" noStyle>
+      <Select style={{ width: 70 }}>
+        <Option value="91">+91</Option>
+        <Option value="1">+1</Option>
+      </Select>
+    </Form.Item>
+  );
 
-    const getValue = (val: any) => {
-        click(val);
-    };
+  const emailChange = (e: any) => {
+    changeEmail(e.target.value);
+  };
 
-    return (
-        <Content
-            className="site-layout-background"
-            style={{
-                margin: "24px 16px",
-                padding: 24,
-                minHeight: 280,
-            }}
+  const mobileChange = (e: any) => {
+    changeMob(e.target.value);
+  };
+
+  const getEmployee = async (value: any) => {
+    const empdata: any = await UserService.getEmployee(value);
+    console.log(empdata);
+    changeReport(empdata.data);
+    console.log(report);
+  };
+
+  const getValue = (val: any) => {
+    click(val);
+  };
+  var breadcrumbText: string[] = ["My Worspace", "Manage Employees", "Create"];
+  return (
+    <Layout>
+      <DisplayBreadcrumb breadcrumbText={breadcrumbText} />
+      <Card title="" bordered={true} style={{ width: "100%", margin: 10 }}>
+        <Title level={2}>Create Employee</Title>
+
+        <Form
+          {...formItemLayout}
+          layout={formLayout}
+          name="basic"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          form={form}
         >
-            <Title level={2}>Create Employee</Title>
+          <Row>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                label="First Name"
+                name="fname"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please Enter First Name",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter First Name" className="formfiled" />
+              </Form.Item>
+            </Col>
 
-            <Form
-                {...formItemLayout}
-                layout={formLayout}
-                name="basic"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                form={form}
-            >
-                <Row>
-                    <Col xs={24} xl={11}>
-                        <Form.Item
-                            label="First Name"
-                            name="fname"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please Enter First Name",
-                                },
-                            ]}
-                        >
-                            <Input
-                                placeholder="Enter First Name"
-                                style={{
-                                    width: 400,
-                                }}
-                            />
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                label="Last Name"
+                name="lname"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please Enter Last Name",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Last Name" className="formfiled" />
+              </Form.Item>
+            </Col>
 
-                    <Col xs={24} xl={13}>
-                        <Form.Item
-                            label="Last Name"
-                            name="lname"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please Enter Last Name",
-                                },
-                            ]}
-                        >
-                            <Input
-                                placeholder="Enter Last Name"
-                                style={{
-                                    width: 400,
-                                }}
-                            />
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                label="Designation"
+                name="designation"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please Enter Designation",
+                  },
+                ]}
+              >
+                <Input placeholder="Enter Designation" className="formfiled" />
+              </Form.Item>
+            </Col>
 
-                    <Col xs={24} xl={11}>
-                        <Form.Item
-                            label="Designation"
-                            name="designation"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please Enter Designation",
-                                },
-                            ]}
-                        >
-                            <Input
-                                placeholder="Enter Designation"
-                                style={{
-                                    width: 400,
-                                }}
-                            />
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                name="email"
+                label="Email ID"
+                rules={[
+                  {
+                    required: true,
+                    type: "email",
+                    message: "Please Enter Email Id",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter Email Id"
+                  className="formfiled"
+                  onChange={(e) => {
+                    emailChange(e);
+                  }}
+                  onBlur={(e) => {
+                    createUser(e);
+                  }}
+                />
+              </Form.Item>
+            </Col>
 
-                    <Col xs={24} xl={13}>
-                        <Form.Item
-                            name="email"
-                            label="Email ID"
-                            rules={[
-                                {
-                                    required: true,
-                                    type: "email",
-                                    message: "Please Enter Email Id",
-                                },
-                            ]}
-                        >
-                            <Input
-                                placeholder="Enter Email Id"
-                                style={{
-                                    width: 400,
-                                }}
-                                onChange={(e) => {
-                                    emailChange(e);
-                                }}
-                                onBlur={(e) => {
-                                    createUser(e);
-                                }}
-                            />
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                name="mobphone"
+                label="Mobile Number"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please Enter Mobile Number",
+                  },
+                ]}
+              >
+                <Input
+                  addonBefore={prefixSelector}
+                  className="formfiled"
+                  placeholder="Enter Mobile Number"
+                  onChange={(e) => {
+                    mobileChange(e);
+                  }}
+                  onBlur={(e) => {
+                    createUser(e);
+                  }}
+                />
+              </Form.Item>
+            </Col>
 
-                    <Col xs={24} xl={11}>
-                        <Form.Item
-                            name="mobphone"
-                            label="Mobile Number"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please Enter Mobile Number",
-                                },
-                            ]}
-                        >
-                            <Input
-                                addonBefore={prefixSelector}
-                                style={{ width: 400 }}
-                                placeholder="Enter Mobile Number"
-                                onChange={(e) => {
-                                    mobileChange(e);
-                                }}
-                                onBlur={(e) => {
-                                    createUser(e);
-                                }}
-                            />
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                label="Phone Number"
+                name="homenumber"
+              >
+                <Input
+                  addonBefore={phoneHome}
+                  className="formfiled"
+                  placeholder="Enter Phone Number"
+                />
+              </Form.Item>
+            </Col>
 
-                    <Col xs={24} xl={13}>
-                        <Form.Item label="Phone Number" name="homenumber">
-                            <Input
-                                addonBefore={phoneHome}
-                                style={{ width: 400 }}
-                                placeholder="Enter Phone Number"
-                            />
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                label="Role"
+                name="role"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please Select Role",
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select Role"
+                  className="formfiled"
+                  onSelect={(value) => {
+                    click(value);
+                  }}
+                >
+                  {rolelist.map((val) => (
+                    <Select.Option value={val.id} key={val.id}>
+                      {" "}
+                      {val.description}{" "}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
 
-                    <Col xs={24} xl={11}>
-                        <Form.Item
-                            label="Role"
-                            name="role"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please Select Role",
-                                },
-                            ]}
-                        >
-                            <Select
-                                placeholder="Select Role"
-                                style={{ width: 400 }}
-                                onSelect={(value) => {
-                                    click(value);
-                                }}
-                            >
-                                {rolelist.map((val) => (
-                                    <Select.Option value={val.id} key={val.id}>
-                                        {" "}
-                                        {val.description}{" "}
-                                    </Select.Option>
-                                ))}
-                            </Select>
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <Form.Item
+                className="formfiled"
+                name="manageId"
+                label="Reporting Manager"
+                rules={[
+                  {
+                    message: "Please Select Reporting Manager",
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Select Reporting Manager"
+                  className="formfiled"
+                >
+                  {reports.map((val: any) => (
+                    <Select.Option value={val.userId} key={val.id}>
+                      {val.firstName + " " + val.lastName}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
 
-                    <Col xs={24} xl={13}>
-                        <Form.Item
-                            name="manageId"
-                            label="Reporting Manager"
-                            rules={[
-                                {
-                                    message: "Please Select Reporting Manager",
-                                },
-                            ]}
-                        >
-                            <Select
-                                placeholder="Select Reporting Manager"
-                                style={{ width: 400 }}
-                            >
-                                {reports.map((val: any) => (
-                                    <Select.Option
-                                        value={val.userId}
-                                        key={val.id}
-                                    >
-                                        {val.firstName + " " + val.lastName}
-                                    </Select.Option>
-                                ))}
-                                {/* <Select.Option></Select.Option> */}
-                            </Select>
-                            {/* {reports.map((val: any) => 
-                  <div key={val.id}>{val.firstName}</div>   
-              )} */}
-                        </Form.Item>
-                    </Col>
-                </Row>
-
-                <Form.Item>
-                    <Space align="center">
-                        <Button
-                            htmlType="button"
-                            onClick={onReset}
-                            type="primary"
-                            danger
-                        >
-                            Cancel
-                        </Button>
-                        <Button type="primary" htmlType="submit">
-                            Create
-                        </Button>
-                    </Space>
-                </Form.Item>
-            </Form>
-        </Content>
-    );
+          <Form.Item>
+            <Space align="center">
+              <Button htmlType="button" onClick={onReset} type="primary" danger>
+                Cancel
+              </Button>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Space>
+          </Form.Item>
+        </Form>
+      </Card>
+    </Layout>
+  );
 };
 
 export default CreateUser;

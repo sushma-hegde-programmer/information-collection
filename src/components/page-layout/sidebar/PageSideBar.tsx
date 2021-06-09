@@ -20,8 +20,6 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
   }
   var index = sidebarOptions.findIndex((item) => item.role === role);
 
-  const item_array = [1, 2];
-
   return (
     <>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -57,22 +55,20 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
           that menu item will remain selected once it is selected. The ant default class will not be changed even though you select another menu item.
           So if you give background color for selected class that won't be changed even if you select other menu item
           So it is better to write in map function than writing separate component and then importing it inside <Menu></Menu>*/}
-          {item_array.map(function (item, i) {
-            console.log("i", i);
-            console.log(sidebarOptions[index].routes[i].route);
+          {sidebarOptions[index].routes.map(function (item, i) {
             return (
               <Menu.Item
-                id={sidebarOptions[index].routes[i].option}
+                id={item.option}
                 className="sidebar__item"
-                icon={sidebarOptions[index].routes[i].icon}
-                key={item}
+                icon={item.icon}
+                key={item.option}
               >
                 <NavLink
                   className="sidebar__item navlink"
                   exact
-                  to={sidebarOptions[index].routes[i].route}
+                  to={item.route}
                 >
-                  {sidebarOptions[index].routes[i].option}
+                  {item.option}
                 </NavLink>
               </Menu.Item>
             );

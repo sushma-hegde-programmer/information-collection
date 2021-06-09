@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import AppRouter from "./AppRouter";
 import LoginRouter from "./LoginRouter";
+import ResetPassword from "./containers/ResetPassword";
 import "./App.css";
 
 function App() {
-  //take role from backend once the user logs in
-  const [role, setRole] = useState("Admin");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function loginAction() {
     setIsLoggedIn(true);
   }
 
-  function renderOnBasisOfLogin(role: string, isLoggedIn: boolean) {
+  function renderOnBasisOfLogin(isLoggedIn: boolean) {
     if (isLoggedIn) {
-      return <AppRouter role={role} />;
+      return <AppRouter />;
     } else {
-      return <LoginRouter loginAction={loginAction} />;
+      if (window.location.pathname.split("/")[1] === "resetPassword") {
+        return <ResetPassword />;
+      } else {
+        return <LoginRouter loginAction={loginAction} />;
+      }
     }
   }
 
-  return <div>{renderOnBasisOfLogin(role, isLoggedIn)}</div>;
+  return <div>{renderOnBasisOfLogin(isLoggedIn)}</div>;
 }
 
 export default App;

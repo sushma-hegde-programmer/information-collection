@@ -1,173 +1,86 @@
 @import "~antd/dist/antd.css";
-.trigger {
-  padding: 0 24px;
-  font-size: 18px;
-  line-height: 64px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.toggle {
-  background-color: #87bce8;
-  color: #fff;
-  padding: 0;
-  display: flex;
-}
-
-.menu {
-  background-color: #fff;
-  margin-top: 11px;
-}
-
-.img {
-  height: 2.5rem;
-  margin-top: -10px;
-}
-
-CopyrightIcon {
-  position: relative;
-  left: -10px;
-}
-
-.trigger {
-  font-size: 32px;
-  padding-left: 20px;
-}
-
-.sidebar {
-  background-color: #fff;
-}
-
-h3 {
-  padding: 10px;
-  position: relative;
-  left: 13px;
-}
-
-/* TopNav */
-
-.icons {
-  display: flex;
-  font-size: 32px;
-  float: right;
-  position: fixed;
-  left: 69rem;
-  cursor: pointer;
-  margin-top: -5px;
-}
-
-.notify,
-.logo {
-  margin-right: 25px;
-}
-
-.logo {
-  background-color: #87bce8;
-}
-
-.popup {
-  display: flex;
-}
-
-/* dashboard */
-
 .content {
-  background: #f0f0f0;
-  padding: 0 30px 20px;
+    background: #f0f0f0;
+    padding: 0 2rem 2rem;
 }
 
 .breadcrumb {
-  margin: 16px 0;
+    margin: 1rem 0;
 }
 
 .background {
-  background: #ffffff;
-  padding: 24px;
-  min-height: 580px;
+    background: #ffffff;
+    padding: 2rem;
+    min-height: 37rem;
 }
 
 .card {
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  top: 50px;
-  border-radius: 10px;
+    width: 13rem;
+    height: 11rem;
+    text-align: center;
+    top: 10rem;
+    border-radius: 1rem;
+    left: 1rem;
 }
 
 .bigNumbers {
-  font-size: 40px;
+    font-size: 2rem;
 }
 
 @media only screen and (max-width: 768px) {
-  /* Groot Team getting error because of this  */
-  /* .ant-row {
-    display: grid;
-    align-items: center;
-    margin-top: -20px;
-    position: fixed;
-  } */
-  .card {
-    width: 150px;
-    height: 110px;
-    margin-bottom: 20px;
-    left: 54px;
-    transform: translate(-35%, -20%);
-  }
-  .bigNumbers {
-    font-size: 20px;
-    margin-top: 0;
-  }
-  .trigger {
-    font-size: 24px;
-    margin-left: -15px;
-  }
+    .dashboard {
+        display: grid;
+        align-items: center;
+        margin-top: -9rem;
+    }
+    .card {
+        width: 150px;
+        height: 110px;
+        margin-bottom: 20px;
+        left: 54px;
+        top: 10rem;
+        transform: translate(-35%, -20%);
+    }
+    .bigNumbers {
+        font-size: .9rem;
+    }
+    h4 {
+        font-size: 1rem;
+    }
 }
 
-@media only screen and (min-width: 375px) {
-  .card {
-    left: 70px;
-  }
+@media screen and (min-device-width: 523px) and (max-device-width: 768px) {
+    .dashboard {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    .card {
+        top: 16rem;
+    }
+    .background {
+        min-height: 30rem;
+    }
 }
 
-@media only screen and (min-width: 425px) {
-  .card {
-    width: 170px;
-    height: 140px;
-    left: 90px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .card {
-    width: 200px;
-    height: 150px;
-    left: 260px;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .card {
-    width: 190px;
-    height: 170px;
-    left: 13px;
-    margin-top: 130px;
-  }
-}
-
-@media only screen and (min-width: 1366px) {
-  .card {
-    width: 200px;
-    height: 170px;
-    position: fixed;
-    margin-top: 130px;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  .card {
-    width: 200px;
-    height: 200px;
-    left: 45px;
-    margin-top: 150px;
-  }
+@media screen and (min-device-width: 888px) and (max-device-width: 1024px) {
+    .dashboard {
+        display: flex;
+    }
+    .card {
+        width: 9rem;
+        height: 9rem;
+        text-align: center;
+        top: 8rem;
+        border-radius: 1rem;
+        left: -0.1rem;
+    }
+    .background {
+        min-height: 30rem;
+    }
+    .bigNumbers {
+        font-size: 1.2rem;
+    }
+    h4 {
+        font-size: 1.3rem;
+    }
 }

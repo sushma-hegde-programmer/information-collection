@@ -6,22 +6,25 @@ export type LoginResponseType = {
   message: string;
   expiresIn: number;
   access_token: string;
+  userId: string;
 };
 
 export type ForgotPasswordResType = {
   message: string;
   expiresIn: number;
   access_token: string;
+  userId: string;
 };
 
 export type AppType = {
   userSession: UserSessionType;
   loading: boolean;
   emailError: any;
+  forgotToken: any;
 };
 
 export type UserSessionType = {
-  user: object | null;
+  user: LoginResponseType | null;
   error: string | null;
   store: AppType | null;
 };
@@ -84,4 +87,31 @@ export type TableColumn = {
   title: string;
   dataIndex: string;
   key: string;
+};
+
+export type SidebarOptionsType = {
+  role: string;
+  routes: RouteType[];
+};
+
+export type RouteType = {
+  option: string;
+  icon: JSX.Element;
+  route: string;
+};
+
+export type UserDataType = {
+  lastLogin: Date;
+  firstName: string;
+  lastName: string;
+  userId: string;
+  userRole: string;
+  email: string;
+  mobile: string;
+};
+export type mailTokenTypes = {
+  forgot: object | null;
+};
+export type resetPasswordType = {
+  password: string;
 };

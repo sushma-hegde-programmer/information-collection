@@ -7,9 +7,9 @@ function Breadcrumbs() {
       <Layout>
         <Breadcrumb className="breadcrumb">
           <Breadcrumb.Item>
-            <a href="#">Dashboard</a>
+            <a href="#">My Workspace</a>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>Employees</Breadcrumb.Item>
+          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
         </Breadcrumb>
       </Layout>
     </Row>

@@ -10,8 +10,7 @@ Sider {
 }
 
 .sidebar__item.workspace {
-  background-color: white;
-  /* border: 2px solid black; */
+  background-color: white;  
   height: 3.125rem !important;
   margin-top: 1.25rem !important;
   font-family: "Franklin Gothic Medium";
@@ -42,3 +41,5 @@ Sider {
 .sidebar__img.hide {
   display: none;
 }
+
+
