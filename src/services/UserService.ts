@@ -19,17 +19,21 @@ const forgotPassword = async (email: string) => {
 //const UserService = { login, forgotPassword };
 //export default UserService;
 
-
 const createUser = (data: any) => {
   const url = `${constants.BASE_URL}/auth/register`;
-  return axios
-    .post<UserType>(url, data)
-    .catch((e) => Promise.reject(e.response.data));
+  return (
+    axios
+      .post<UserType>(url, data)
+      .then(async (res) => {
+        console.log(res.data);
+      })
+      .catch((e) => Promise.reject(e.response.data))
+  );
 };
 
-const createEmployee = (data: any) => {
+const createEmployee = async (data: any) => {
   const url = `${constants.BASE_URL}/auth/employee_userrole`;
-  return axios
+  return await axios
     .post<EmployeeType>(url, data)
     .catch((e) => Promise.reject(e.response.data));
 };
@@ -46,10 +50,8 @@ const getUserDetailsById = (id: any) => {
 
 const updateEmployee = (data: any) => {
   const url = `${constants.BASE_URL}/auth/register`;
-  return axios
-    .patch(url, data)
-    .catch((e) => Promise.reject(e));
-}
+  return axios.patch(url, data).catch((e) => Promise.reject(e));
+};
 
 export default {
   createUser,

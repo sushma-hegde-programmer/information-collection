@@ -1,7 +1,17 @@
-import { message, Form, Input, Select, Button, Space, Col, Row, Card } from "antd";
+import {
+  message,
+  Form,
+  Input,
+  Select,
+  Button,
+  Space,
+  Col,
+  Row,
+  Card,
+} from "antd";
 import Layout, { Content } from "antd/lib/layout/layout";
 import React, { useState } from "react";
-import {useHistory} from "react-router";
+import { useHistory } from "react-router";
 import { Typography } from "antd";
 import { RoleType } from "../types";
 import EmployeeService from "../services/EmployeeService";
@@ -24,9 +34,22 @@ type Props = {
   usersId: string;
   managersName: string;
   designations: string;
+  empDataUpdate: any;
 };
 
-const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, click, reports, usersId, managersName,designations }) => {
+const Update: React.FC<Props> = ({
+  rolelist,
+  data,
+  emails,
+  mobiles,
+  managers,
+  click,
+  reports,
+  usersId,
+  managersName,
+  designations,
+  empDataUpdate,
+}) => {
   const [formLayout] = useState<LayoutType>("vertical");
   const [form] = Form.useForm();
   const [empData, changeEmp] = useState();
@@ -39,23 +62,24 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
       changeEmp(data);
       changeUser(data.userId);
       //console.log("Manager Id",managers);
-      console.log("Update line 37", empData)
-      console.log("Managers first name: ", managersName);
-      form.setFieldsValue({
-        fname: data.firstName,
-        lname: data.lastName,
-        designation: data.designation, 
-        mobnumber: mobiles,
-        home: data.homePhone,
-        email: emails,
-        //role: data.managerId = 1 ? "Leadership/Management" : data.managerId = 2 ? "Account Manager" : data.managerId = 3 ? "Human Resource" : data.managerId = 4 ? "Recruiter" : data.managerId = 5 ? "Candidate" : "Admin",
-        // manageId: EmployeeService.getEmployeeNameById(data.managerId).then(() => { 
-        //   console.log(data);
-        // })
-        //manageId: managersName
+      console.log("Update line 37", empData);
+      console.log("Managers first name: ", empDataUpdate);
+      console.log("single", empDataUpdate["firstName"]);
+
+      empDataUpdate.map((data1: any) => {
+        form.setFieldsValue({
+          fname: data1.firstName,
+          lname: data1.lastName,
+          designation: data1.designation,
+          mobnumber: data1.mobile,
+          home: data1.homePhone,
+          email: data1.email,
+          role: data1.userRole,
+          manageId: data1.managerName,
+        });
       });
     }
-  }; 
+  };
 
   // React.useEffect(() => {
   //   form.setFieldsValue({
@@ -67,26 +91,20 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
 
   const defaultRole = (desig: string) => {
     console.log("Manager comes in default role", desig);
-      if(desig==="leader"){
-        return "Leadership/Management"
-      }
-      else if(desig==="bdm"){
-        return "Account Manager/BD/CRM"
-      }
-      else if(desig==="hr"){
-        return "Human Resource"
-      }
-      else if(desig==="recruiter"){
-        return "Recruiter"
-      }
-      else if(desig==="candidate"){ 
-        return "Candidate"
-      }
-      else {
-        return "Administrator"
-      }
-      
-  }
+    if (desig === "leader") {
+      return "Leadership/Management";
+    } else if (desig === "bdm") {
+      return "Account Manager/BD/CRM";
+    } else if (desig === "hr") {
+      return "Human Resource";
+    } else if (desig === "recruiter") {
+      return "Recruiter";
+    } else if (desig === "candidate") {
+      return "Candidate";
+    } else {
+      return "Administrator";
+    }
+  };
 
   const formItemLayout =
     formLayout === "vertical"
@@ -117,14 +135,13 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
       managerId: manageId,
       designation: designation,
       homePhone: home,
-      userId : usersId
+      userId: usersId,
     };
-    console.log("Datasent for updation",data);
-    const updateEmp = await UserService.updateEmployee(data); 
+    console.log("Datasent for updation", data);
+    const updateEmp = await UserService.updateEmployee(data);
 
     message.success("User Update successfully");
     history.push("/admin/manage-employees");
-    
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -155,103 +172,103 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
   var breadcrumbText: string[] = ["My Worspace", "Manage Employees", "Update"];
   return (
     <Layout>
-    <DisplayBreadcrumb breadcrumbText={breadcrumbText} />
-    <Card title="" bordered={true} style={{ width: "100%", margin: 10 }}>
-      {console.log(rolelist)}
-      <Title level={2}>Update Employee</Title>
-      {console.log(designations)}
-      <Form
-        {...formItemLayout}
-        layout={formLayout}
-        name="basic"
-        initialValues={{
-          remember: true,
-          // fname: empData.firstName,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        form={form}
-      >
-        <Row>
-          <Col xs={24} xl={12}>
-            <Form.Item
-              label="First name"
-              name="fname"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your name!",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter Name"
-                style={{
-                  width: 400,
-                }}
-              />
-            </Form.Item>
-          </Col>
-          <Col xs={24} xl={12}>
-            <Form.Item
-              label="Last name"
-              name="lname"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your name!",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter Name"
-                style={{
-                  width: 400,
-                }}
-              />
-            </Form.Item>
-          </Col>
+      <DisplayBreadcrumb breadcrumbText={breadcrumbText} />
+      <Card title="" bordered={true} style={{ width: "100%", margin: 10 }}>
+        {console.log(rolelist)}
+        <Title level={2}>Update Employee</Title>
+        {console.log(designations)}
+        <Form
+          {...formItemLayout}
+          layout={formLayout}
+          name="basic"
+          initialValues={{
+            remember: true,
+            // fname: empData.firstName,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          form={form}
+        >
+          <Row>
+            <Col xs={24} xl={12}>
+              <Form.Item
+                label="First name"
+                name="fname"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your name!",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter Name"
+                  style={{
+                    width: 400,
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col xs={24} xl={12}>
+              <Form.Item
+                label="Last name"
+                name="lname"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your name!",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter Name"
+                  style={{
+                    width: 400,
+                  }}
+                />
+              </Form.Item>
+            </Col>
 
-          <Col xs={24} xl={12}>
-            <Form.Item
-              label="Designation"
-              name="designation"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Designation!",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter Designation!"
-                style={{
-                  width: 400,
-                }}
-              />
-            </Form.Item>
-          </Col>
-          <Col xs={24} xl={12}>
-            <Form.Item
-              name="email"
-              label="Email ID"
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter Email"
-                style={{
-                  width: 400,
-                }}
-              />
-            </Form.Item>
-          </Col>
+            <Col xs={24} xl={12}>
+              <Form.Item
+                label="Designation"
+                name="designation"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input Designation!",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter Designation!"
+                  style={{
+                    width: 400,
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col xs={24} xl={12}>
+              <Form.Item
+                name="email"
+                label="Email ID"
+                rules={[
+                  {
+                    required: true,
+                    type: "email",
+                  },
+                ]}
+              >
+                <Input
+                  placeholder="Enter Email"
+                  style={{
+                    width: 400,
+                  }}
+                />
+              </Form.Item>
+            </Col>
 
-          {/* 
+            {/* 
   <Form.Item name={['empid', 'EmployeementID']} label="EmployeementID" rules={[{ 
       required: true,
       type: 'number' }]}
@@ -262,89 +279,92 @@ const Update: React.FC<Props> = ({ rolelist, data, emails, mobiles, managers, cl
         }} placeholder="Enter Designation!"  />
   </Form.Item> */}
 
-          <Col xs={24} xl={12}>
-            <Form.Item
-              label="Mobile number"
-              name="mobnumber"
-              rules={[
-                { required: true, message: "Please input your phone number!" },
-              ]}
-            >
-              <Input
-                addonBefore={prefixSelector}
-                style={{ width: 400 }}
-                placeholder="Enter Phone number"
-              />
-            </Form.Item>
-          </Col>
-
-          <Col xs={24} xl={12}>
-            <Form.Item name="home" label="homenumber">
-              <Input
-                addonBefore={phoneHome}
-                style={{ width: 400 }}
-                placeholder="Enter Phone number"
-              />
-            </Form.Item>
-          </Col>
-          <Col xs={24} xl={12}>
-            <Form.Item label="Role" name="role" rules={[{ required: true }]}>
-              <Select
-                placeholder="please Select"
-                style={{
-                  width: 400,
-                }}
-                defaultValue={defaultRole(designations.toLowerCase())}  
-                key={designations}
-                onSelect={(value) => { 
-                  click(value);
-                }}
-                // onChange={(value) => {
-                //   click(value);
-                // }}
+            <Col xs={24} xl={12}>
+              <Form.Item
+                label="Mobile number"
+                name="mobnumber"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your phone number!",
+                  },
+                ]}
               >
-                {rolelist.map((val) => (
-                  <Select.Option value={val.id} key={val.id}>
-                    {val.description}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
+                <Input
+                  addonBefore={prefixSelector}
+                  style={{ width: 400 }}
+                  placeholder="Enter Phone number"
+                />
+              </Form.Item>
+            </Col>
 
-          <Col xs={24} xl={12}>
-            <label>Reporting Manager</label>
-            <Form.Item name="manageId" rules={[{ required: true }]}>
-              <Select
-                placeholder="please Select"
-                style={{
-                  width: 400,
-                }}
-                defaultValue={`${managersName}`}  
-                key={`${managersName}`} 
-              >
-                {reports.map((val: any) => (
+            <Col xs={24} xl={12}>
+              <Form.Item name="home" label="homenumber">
+                <Input
+                  addonBefore={phoneHome}
+                  style={{ width: 400 }}
+                  placeholder="Enter Phone number"
+                />
+              </Form.Item>
+            </Col>
+            <Col xs={24} xl={12}>
+              <Form.Item label="Role" name="role" rules={[{ required: true }]}>
+                <Select
+                  placeholder="please Select"
+                  style={{
+                    width: 400,
+                  }}
+                  defaultValue={defaultRole(designations.toLowerCase())}
+                  key={designations}
+                  onSelect={(value) => {
+                    click(value);
+                  }}
+                  // onChange={(value) => {
+                  //   click(value);
+                  // }}
+                >
+                  {rolelist.map((val) => (
+                    <Select.Option value={val.id} key={val.id}>
+                      {val.description}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+
+            <Col xs={24} xl={12}>
+              <label>Reporting Manager</label>
+              <Form.Item name="manageId" rules={[{ required: true }]}>
+                <Select
+                  placeholder="please Select"
+                  style={{
+                    width: 400,
+                  }}
+                  defaultValue={`${managersName}`}
+                  key={`${managersName}`}
+                >
+                  {reports.map((val: any) => (
                     <Select.Option value={val.userId} key={val.id}>
                       {val.firstName + " " + val.lastName}
                     </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
-        </Row>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Form.Item>
-          <Space align="center">
-            <Button htmlType="button" onClick={onReset} type="primary" danger>
-              Cancel
-            </Button>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Space>
-        </Form.Item>
-      </Form>
-    </Card>
+          <Form.Item>
+            <Space align="center">
+              <Button htmlType="button" onClick={onReset} type="primary" danger>
+                Cancel
+              </Button>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Space>
+          </Form.Item>
+        </Form>
+      </Card>
     </Layout>
   );
 };

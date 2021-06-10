@@ -70,6 +70,7 @@ export type UserType = {
   updatedBy: string;
   isActive: string;
   mobile: number;
+  userId: string;
 };
 
 export type EmployeeListType = {

@@ -2,6 +2,7 @@ const admin_routes = [
   "/Admin/workspace",
   "/Admin/dashboard",
   "/Admin/manage-employees",
+  "/Admin/delete-employee",
 ];
 
 const recruiter_routes = [

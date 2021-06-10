@@ -20,9 +20,7 @@ import EmployeeColumn from "../components/EmployeeColumn";
 import { TableColumn } from "../types";
 
 import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrumb";
-import EmployeeBreadcrumb from "../components/EmployeeBreadcrumb";
 import "../styles/EmployeeList.css";
-import "../styles/Employee.css";
 const { Title } = Typography;
 
 const { Content } = Layout;
@@ -48,7 +46,7 @@ class EmployeeList extends React.Component<State> {
     },
     loading: false,
     order: "ASC",
-    field: "Id",
+    field: "firstName",
     query: "",
     role: "",
   };
@@ -86,11 +84,11 @@ class EmployeeList extends React.Component<State> {
         role
       );
       data.map((value: any, key: any) => {
-        console.log(value.firstName, "iteration", key);
+        console.log(value, "iteration", key);
         const tabledatarow: any = {
           fullName: { firstname: value.firstName, lastname: value.lastName },
           email: value.email,
-          id: key + 1,
+          id: { sno: key + 1, eid:value.employeeId, userId: value.userId, mid: value.managerId },
           managerName: value.managerName,
           role: [value.userRole],
         };
@@ -178,7 +176,7 @@ class EmployeeList extends React.Component<State> {
 
   render() {
     const { employeelist, pagination, loading } = this.state;
-    var breadcrumbText: string[] = ["My Workspace", "Manage Employees"];
+    var breadcrumbText: string[] = ["My Worspace", "Manage Employees"];
 
     return (
       <>
@@ -190,8 +188,7 @@ class EmployeeList extends React.Component<State> {
                 <Col span={8}>
                   <Title level={2}>Employees</Title>
                 </Col>
-                <div className="space"></div>
-                <Col span={11} offset={14} className="space">
+                <Col span={8} offset={8}>
                   <Space>
                     <Search
                       placeholder=" search"

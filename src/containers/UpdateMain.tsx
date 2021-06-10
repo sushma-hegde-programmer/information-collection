@@ -3,7 +3,7 @@ import Update from "../components/Update";
 import { RoleType } from "../types";
 import RoleService from "../services/RoleService";
 import EmployeeService from "../services/EmployeeService";
-import UserService from "../services/UserService"
+import UserService from "../services/UserService";
 
 type Props = {
   location: any;
@@ -11,17 +11,18 @@ type Props = {
 type State = {
   roledata: RoleType[];
   empData: [];
-  email:string;
+  email: string;
   mobile: number;
   manager: number;
   reporting: [];
   userId: string;
   managerName: string;
   designation: string;
+  empDataUpdate: [];
 };
 
 class UpdateMain extends React.Component {
-  id = window.location.pathname.split("/")[2];
+  userId = window.location.pathname.split("/")[2];
   state: State = {
     roledata: [],
     empData: [],
@@ -31,7 +32,8 @@ class UpdateMain extends React.Component {
     reporting: [],
     userId: "",
     managerName: "",
-    designation: ""
+    designation: "",
+    empDataUpdate: [],
   };
   componentDidMount() {
     this.getRoles();
@@ -50,19 +52,22 @@ class UpdateMain extends React.Component {
   }
   async getEmployee() {
     try {
-      const { data } = await EmployeeService.getEmployeeById(parseInt(this.id));
-      console.log("Updatemain line 52 DATA",data);
-      const datatest = await EmployeeService.getEmployeeNameById(parseInt(data.managerId));
-      this.setState({ userId: data.userId["userId"]})
-      this.setState({ email: data.userId["email"] });
-      this.setState({ mobile: data.userId["mobile"] });
-      this.setState({ manager: data.managerId});
-      this.setState({ designation: data.designation });
-      this.setState({ managerName: datatest.data.firstName+" "+datatest.data.lastName})
-      console.log("Email:", this.state.email);
-      console.log("Mobile: ", this.state.mobile);
-      this.setState({ empData: data });
-      console.log("update main line 62 EMPDATA",this.state.empData)
+      const { data } = await EmployeeService.getEmployeeById(this.userId);
+      console.log("Updatemain line 52 DATA", data);
+      this.setState({ empDataUpdate: data });
+      // console.log(this.state.empDataUpdate);
+      this.setState({ userId: this.userId });
+      // const datatest = await EmployeeService.getEmployeeNameById(parseInt(data.managerId));
+      // this.setState({ userId: data.userId["userId"]})
+      // this.setState({ email: data.userId["email"] });
+      // this.setState({ mobile: data.userId["mobile"] });
+      // this.setState({ manager: data.managerId});
+      // this.setState({ designation: data.designation });
+      // this.setState({ managerName: datatest.data.firstName+" "+datatest.data.lastName})
+      // console.log("Email:", this.state.email);
+      // console.log("Mobile: ", this.state.mobile);
+      // this.setState({ empData: data });
+      // console.log("update main line 62 EMPDATA",this.state.empData)
     } catch (e) {
       console.log(e);
     }
@@ -84,16 +89,19 @@ class UpdateMain extends React.Component {
     // console.log(p);
     return (
       <div>
-        <Update rolelist={this.state.roledata} 
-                click={this.roleClick} 
-                reports={this.state.reporting} 
-                data={this.state.empData} 
-                emails={this.state.email} 
-                mobiles={this.state.mobile} 
-                managers={this.state.manager}
-                usersId={this.state.userId}
-                managersName={this.state.managerName}
-                designations={this.state.designation}/>
+        <Update
+          rolelist={this.state.roledata}
+          click={this.roleClick}
+          reports={this.state.reporting}
+          data={this.state.empDataUpdate}
+          emails={this.state.email}
+          mobiles={this.state.mobile}
+          managers={this.state.manager}
+          usersId={this.state.userId}
+          managersName={this.state.managerName}
+          designations={this.state.designation}
+          empDataUpdate={this.state.empDataUpdate}
+        />
       </div>
     );
   }

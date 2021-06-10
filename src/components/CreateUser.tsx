@@ -66,12 +66,10 @@ const CreateUser: React.FC<Props> = ({ rolelist, click, reports }) => {
       designation: designation,
       homePhone: homenumber,
     };
-    const test1 = () => {
-      console.log("test1 start");
-      const employee = UserService.createEmployee(data);
-      console.log("test1 end");
+    const callCreateEmployeeAPI = async () => {
+      const user = await UserService.createUser(data);
     };
-    const test1ok = test1();
+    const test1ok = callCreateEmployeeAPI();
     message.success("User Create successfully");
   };
 
@@ -88,7 +86,7 @@ const CreateUser: React.FC<Props> = ({ rolelist, click, reports }) => {
       homePhone: 2446553,
     };
     if (email && mobile) {
-      const user = UserService.createUser(data);
+      // const user = UserService.createUser(data);
     }
   };
 
@@ -308,6 +306,7 @@ const CreateUser: React.FC<Props> = ({ rolelist, click, reports }) => {
                   {
                     message: "Please Select Reporting Manager",
                   },
+                  { required: true },
                 ]}
               >
                 <Select

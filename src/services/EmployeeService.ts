@@ -7,7 +7,7 @@ const getEmployees = (
   query: string,
   role: string
 ) => {
-  const url = `${constants.BASE_URL}/employee?q=${query}&f=${field}&o=${order}&r=${role}`; 
+  const url = `${constants.BASE_URL}/employee?q=${query}&f=${field}&o=${order}&r=${role}`;
   return axios.get(url);
 };
 
@@ -15,7 +15,7 @@ const getEmployees = (
 //   const url = `${constants.BASE_URL}/employee?q=${query}&f=${field}&o=${order}`;
 //   return axios.get(url);
 // };
-const getEmployeeById = (id: number) => {
+const getEmployeeById = (id: string) => {
   const url = `${constants.BASE_URL}/employee/findOne/${id}`;
   return axios.get(url);
 };
@@ -23,6 +23,28 @@ const getEmployeeById = (id: number) => {
 const getEmployeeNameById = (id: number) => {
   const url = `${constants.BASE_URL}/employee/employeename/${id}`;
   return axios.get(url);
-}
+};
 
-export default { getEmployees, getEmployeeById, getEmployeeNameById};
+const getEmployeesByRole = (role: string = "") => {
+  const url = `${constants.BASE_URL}/employee?r=${role}`;
+  return axios.get(url);
+};
+
+const deleteEmployee = (id: number) => {
+  const url = `${constants.BASE_URL}/employee/deleteEmployee?id=${id}`;
+  return axios.patch(url);
+};
+
+const assignEmployee = (id: number, managerId: string) => {
+  const url = `${constants.BASE_URL}/employee/changeManager?id=${id}&mid=${managerId}`;
+  return axios.patch(url);
+};
+
+export default {
+  getEmployees,
+  getEmployeeById,
+  getEmployeesByRole,
+  getEmployeeNameById,
+  deleteEmployee,
+  assignEmployee,
+};

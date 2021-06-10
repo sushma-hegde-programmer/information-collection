@@ -11,9 +11,18 @@ const { Sider } = Layout;
 type Props = {
   collapsed: boolean;
   role: string;
+  toggle: () => void;
+  grantToggleAllowed: () => void;
 };
 
-const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
+const PageAppBar: React.FC<Props> = ({
+  collapsed,
+  role,
+  grantToggleAllowed,
+  toggle,
+}) => {
+  console.log("in page appbar");
+  console.log("grant toggle allowed function", grantToggleAllowed);
   let imageClasses = "sidebar__img";
   if (collapsed) {
     imageClasses = "sidebar__img hide";
@@ -22,7 +31,30 @@ const PageAppBar: React.FC<Props> = ({ collapsed, role }) => {
 
   return (
     <>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        breakpoint="md"
+        collapsedWidth="5rem"
+        onBreakpoint={(broken) => {
+          console.log("broken in sidebar", broken);
+          console.log("toggle allowed in sidebar", grantToggleAllowed);
+          console.log("collapsed in sidebar", collapsed);
+          if(!broken){ if(collapsed){
+            toggle();
+            grantToggleAllowed()
+          }}
+          if (collapsed && broken) {grantToggleAllowed(); }
+          else if(broken && !collapsed){
+            toggle();
+            console.log("collapsed is now after hitting breakpoing", collapsed);
+            grantToggleAllowed();
+            toggle()
+          }
+        }}
+      >       
+        {console.log("grant toggle allowed", grantToggleAllowed)}
         <Menu
           className="sidebar__menu"
           mode="inline"

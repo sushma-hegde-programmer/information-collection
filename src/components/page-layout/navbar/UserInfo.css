@@ -1,6 +1,14 @@
 @import "~antd/dist/antd.css";
 
 .userinfo {
-  background-color: white;
-  width: 5.625rem;
+  margin-top: -0.188rem !important;
 }
+
+.userinfo__item {
+  margin: 0 !important;
+}
+
+/* .userinfo__item:hover {
+  background-color: cadetblue;
+  color: white;
+} */

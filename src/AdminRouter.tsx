@@ -7,6 +7,7 @@ import DashboardContent from "./components/DashboardContent";
 import EmployeeList from "./containers/EmployeeList";
 import CreateUserMain from "./containers/CreateUserMain";
 import UpdateMain from "../src/containers/UpdateMain";
+import DeleteEmployee from "./containers/DeleteEmployee";
 
 type Props = {
   role: string;
@@ -29,6 +30,11 @@ const AdminRouter: React.FC<Props> = ({ role }) => {
             exact
             path="/Admin/manage-employees"
             component={EmployeeList}
+          />
+          <Route
+            exact
+            path="/Admin/delete-employee"
+            component={DeleteEmployee}
           />
           <Route path={"/createuser"} component={CreateUserMain} />
           <Route path={"/update/:id"} component={UpdateMain} />

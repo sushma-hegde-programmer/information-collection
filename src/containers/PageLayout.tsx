@@ -12,17 +12,28 @@ type Props = {
 
 const PageLayout: React.FC<Props> = ({ ...props }) => {
   const { role } = props;
-  console.log("role", role);
   const [collapsed, setCollapsed] = useState(false);
+  const [toggleAllowed, setToggleAllowed] = useState(true);
   const toggle = () => {
     setCollapsed(!collapsed);
   };
+
+  function grantToggleAllowed() {
+    setToggleAllowed(!toggleAllowed);
+  }
   return (
     //to children for this parent component are PageSideBar and PageNavBar, pass the properties to both children
     <Layout>
-      <PageSideBar collapsed={collapsed} role={role} />
+      {console.log("in page layout")}
+      {/* {console.log("toggle allowed", toggleAllowed)} */}
+      <PageSideBar
+        collapsed={collapsed}
+        role={role}
+        grantToggleAllowed={grantToggleAllowed}
+        toggle={toggle}
+      />
       <Layout>
-        <PageNavBar toggle={toggle} />
+        <PageNavBar toggle={toggle} toggleAllowed={toggleAllowed} />
         <Content className="pagelayout__content" {...props}></Content>
         <Footer className="pagelayout__footer">
           © Careator Technologies. All rights reserved

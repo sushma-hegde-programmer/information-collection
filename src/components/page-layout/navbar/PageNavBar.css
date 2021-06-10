@@ -3,7 +3,7 @@
   background-color: #87bce8;
   display: flex;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 0; 
 }
 .navbar__item {
   background-color: #87bce8;
@@ -30,4 +30,16 @@
 
 .end-icon {
   margin-right: 0.625rem;
+}
+
+.ant-popover-inner-content {
+  padding: 0 !important;
+}
+.ant-popover-placement-bottom {
+  padding-top: 0 !important;
+}
+.ant-popover-placement-bottom > .ant-popover-content > .ant-popover-arrow {
+  left: 1.688rem;
+  top: -0.5rem;
+  transform: translateX(393%) rotate(45deg);
 }

@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import "./PageNavBar.css";
 import { Avatar, Popover } from "antd";
 import UserInfo from "./UserInfo";
-import { MessageOutlined, BellOutlined, MenuOutlined } from "@ant-design/icons";
+import {
+  MessageOutlined,
+  BellOutlined,
+  MenuOutlined,
+  ConsoleSqlOutlined,
+} from "@ant-design/icons";
 
 type Props = {
   toggle: () => void;
+  toggleAllowed: boolean;
 };
-const PageNavBar: React.FC<Props> = ({ toggle }) => {
+const PageNavBar: React.FC<Props> = ({ toggle, toggleAllowed }) => {
+  // console.log("in page navbar toggle allowed", toggleAllowed);
   const [visible, setVisible] = useState(false);
 
   const hide = () => {
@@ -16,7 +23,12 @@ const PageNavBar: React.FC<Props> = ({ toggle }) => {
 
   return (
     <div className="navbar">
-      <div className="navbar__item icon" onClick={toggle}>
+      <div
+        className="navbar__item icon"
+        onClick={() => {          
+          if (toggleAllowed) toggle();
+        }}
+      >
         <MenuOutlined />
       </div>
       <div className="navbar__item icon spacer">none</div>

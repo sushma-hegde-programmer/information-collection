@@ -1,6 +1,6 @@
 import { Space, Switch, Tag } from "antd";
 import { Link } from "react-router-dom";
-import { EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ const EmployeeColumn = [
     title: "S/No",
     dataIndex: "id",
     key: "id",
+    render: (id: any) => `${id.sno}`,
   },
   {
     title: "Name",
@@ -70,15 +71,20 @@ const EmployeeColumn = [
     title: "Actions",
     dataIndex: "id",
     key: "id",
-    render: (id: any) => (
+    render: (id: any, record: any) => (
       <>
         <Space align="center" size="large">
-          <Link to={`/update/${id}`}>
+          <Link to={`/update/${record.id.userId}`}>
             <EditOutlined style={{ fontSize: "25px" }} />
           </Link>
 
-          <Link to="/admin">
-            <Switch></Switch>
+          <Link
+            to={{
+              pathname: "/Admin/delete-employee",
+              state: { record: record },
+            }}
+          >
+            <DeleteOutlined style={{ fontSize: "25px" }} />
           </Link>
         </Space>
       </>
