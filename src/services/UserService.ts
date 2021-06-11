@@ -21,14 +21,12 @@ const forgotPassword = async (email: string) => {
 
 const createUser = (data: any) => {
   const url = `${constants.BASE_URL}/auth/register`;
-  return (
-    axios
-      .post<UserType>(url, data)
-      .then(async (res) => {
-        console.log(res.data);
-      })
-      .catch((e) => Promise.reject(e.response.data))
-  );
+  return axios
+    .post<UserType>(url, data)
+    .then(async (res) => {
+      console.log(res.data);
+    })
+    .catch((e) => Promise.reject(e.response.data));
 };
 
 const createEmployee = async (data: any) => {
@@ -50,7 +48,9 @@ const getUserDetailsById = (id: any) => {
 
 const updateEmployee = (data: any) => {
   const url = `${constants.BASE_URL}/auth/register`;
-  return axios.patch(url, data).catch((e) => Promise.reject(e));
+  return axios.patch(url, data).catch((e) => {
+    Promise.reject(e);
+  });
 };
 
 export default {

@@ -1,11 +1,12 @@
 @import "~antd/dist/antd.css";
 
-.userinfo {
-  margin-top: -0.188rem !important;
+.userinfo{ 
+    top: -0.813rem !important;
+    left: 0.563rem!important;
 }
-
-.userinfo__item {
-  margin: 0 !important;
+.ant-dropdown-arrow{
+  top: -0.5rem !important;
+  left: 3.938rem !important;
 }
 
 /* .userinfo__item:hover {

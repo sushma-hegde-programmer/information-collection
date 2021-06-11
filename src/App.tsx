@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AppRouter from "./AppRouter";
-import LoginRouter from "./LoginRouter";
+import AppRouter from "./route/AppRouter";
+import LoginRouter from "./route/LoginRouter";
 import ResetPassword from "./containers/ResetPassword";
 import "./App.css";
 

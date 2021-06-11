@@ -44,7 +44,7 @@ class EmployeeList extends React.Component<State> {
       current: 1,
       pageSize: 4,
     },
-    loading: false,
+    loading: true,
     order: "ASC",
     field: "firstName",
     query: "",
@@ -104,6 +104,7 @@ class EmployeeList extends React.Component<State> {
 
       this.setState({
         employeelist: tabledata,
+        loading:false
       });
     } catch (error) {
       console.log(error);
@@ -163,7 +164,7 @@ class EmployeeList extends React.Component<State> {
     console.log(value + "search value");
     console.log(this.state.role + "role value");
     await this.setState({ query: value });
-    this.setState({ loading: true });
+    await this.setState({ loading: true });
     this.getData(
       this.state.pagination,
       this.state.field,
@@ -171,7 +172,7 @@ class EmployeeList extends React.Component<State> {
       this.state.query,
       this.state.role
     );
-    this.setState({ loading: false });
+    await this.setState({ loading: false });
   };
 
   render() {

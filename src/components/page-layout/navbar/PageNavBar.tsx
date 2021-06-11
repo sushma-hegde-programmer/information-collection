@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PageNavBar.css";
-import { Avatar, Popover } from "antd";
+import { Avatar,Dropdown} from "antd";
 import UserInfo from "./UserInfo";
 import {
   MessageOutlined,
@@ -39,21 +39,14 @@ const PageNavBar: React.FC<Props> = ({ toggle, toggleAllowed }) => {
       <div className="navbar__item icon">
         {" "}
         <MessageOutlined />
-      </div>
-      <Popover
-        content={<UserInfo />}
-        title=""
-        trigger="click"
-        visible={visible}
-        placement="bottom"
-        onVisibleChange={setVisible}
-      >
-        <div className="navbar__item icon end-icon">
+      </div>      
+      <Dropdown overlay={UserInfo} placement="bottomRight" arrow>
+      <div className="navbar__item icon end-icon">
           <Avatar className="avatar" size="large">
             S
           </Avatar>
         </div>
-      </Popover>
+    </Dropdown>
     </div>
   );
 };

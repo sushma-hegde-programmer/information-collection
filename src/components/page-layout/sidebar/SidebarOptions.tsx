@@ -21,6 +21,11 @@ const sidebarOptions: SidebarOptionsType[] = [
     role: "Admin",
     routes: [
       {
+        option: "My Workspace",
+        icon: <LaptopOutlined />,
+        route: admin_routes[0],
+      },
+      {
         option: "Dashboard",
         icon: <DashboardOutlined />,
         route: admin_routes[1],
@@ -35,6 +40,11 @@ const sidebarOptions: SidebarOptionsType[] = [
   {
     role: "Recruiter",
     routes: [
+      {
+        option: "My Workspace",
+        icon: <LaptopOutlined />,
+        route: recruiter_routes[0],
+      },
       {
         option: "Dashboard",
         icon: <DashboardOutlined />,
@@ -56,6 +66,11 @@ const sidebarOptions: SidebarOptionsType[] = [
     role: "HR",
     routes: [
       {
+        option: "My Workspace",
+        icon: <LaptopOutlined />,
+        route: hr_routes[0],
+      },      
+      {
         option: "HR Submenu 1",
         icon: <LaptopOutlined />,
         route: hr_routes[1],
@@ -70,6 +85,11 @@ const sidebarOptions: SidebarOptionsType[] = [
   {
     role: "BDM",
     routes: [
+      {
+        option: "My Workspace",
+        icon: <LaptopOutlined />,
+        route: account_manager_routes[0],
+      },
       {
         option: "AM Sub 1",
         icon: <LaptopOutlined />,
@@ -86,6 +106,11 @@ const sidebarOptions: SidebarOptionsType[] = [
     role: "Leader",
     routes: [
       {
+        option: "My Workspace",
+        icon: <LaptopOutlined />,
+        route: leader_routes[0],
+      },
+      {
         option: "Leader Sub 1",
         icon: <DashboardOutlined />,
         route: leader_routes[1],
@@ -100,6 +125,11 @@ const sidebarOptions: SidebarOptionsType[] = [
   {
     role: "Candidate",
     routes: [
+      {
+        option: "My Workspace",
+        icon: <LaptopOutlined />,
+        route: candidate_routes[0],
+      },
       {
         option: "Candidate Sub 1",
         icon: <DashboardOutlined />,

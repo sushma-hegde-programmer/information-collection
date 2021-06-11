@@ -18,7 +18,7 @@ function UserInfo() {
       >
         Sign Out
       </Menu.Item>
-    </Menu>
+    </Menu>   
   );
 }
 

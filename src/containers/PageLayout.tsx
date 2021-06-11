@@ -21,11 +21,8 @@ const PageLayout: React.FC<Props> = ({ ...props }) => {
   function grantToggleAllowed() {
     setToggleAllowed(!toggleAllowed);
   }
-  return (
-    //to children for this parent component are PageSideBar and PageNavBar, pass the properties to both children
-    <Layout>
-      {console.log("in page layout")}
-      {/* {console.log("toggle allowed", toggleAllowed)} */}
+  return (   
+    <Layout>     
       <PageSideBar
         collapsed={collapsed}
         role={role}

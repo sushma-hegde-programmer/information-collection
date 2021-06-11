@@ -1,35 +1,35 @@
 const admin_routes = [
-  "/Admin/workspace",
-  "/Admin/dashboard",
-  "/Admin/manage-employees",
-  "/Admin/delete-employee",
+  "/admin/workspace",
+  "/admin/dashboard",
+  "/admin/manage-employees",
+  "/admin/delete-employee",
 ];
 
 const recruiter_routes = [
-  "/Recruiter/workspace",
-  "/Recruiter/dashboard",
-  "/Recruiter/manage-clients",
-  "/Recruiter/manage-candidates",
+  "/recruiter/workspace",
+  "/recruiter/dashboard",
+  "/recruiter/manage-clients",
+  "/recruiter/manage-candidates",
 ];
 
-const hr_routes = ["/HR/workspace", "/HR/submenu1", "/HR/submenu2"];
+const hr_routes = ["/hr/workspace", "/hr/submenu1", "/hr/submenu2"];
 
 const account_manager_routes = [
-  "/BDM/workspace",
-  "/BDM/submenu1",
-  "/BDM/submenu2",
+  "/account-manager/workspace",
+  "/account-manager/submenu1",
+  "/account-manager/submenu2",
 ];
 
 const leader_routes = [
-  "/Leader/workspace",
-  "/Leader/submenu1",
-  "/Leader/submenu2",
+  "/leader/workspace",
+  "/leader/submenu1",
+  "/leader/submenu2",
 ];
 
 const candidate_routes = [
-  "/Candidate/workspace",
-  "/Candidate/submenu1",
-  "/Candidate/submenu2",
+  "/candidate/workspace",
+  "/candidate/submenu1",
+  "/candidate/submenu2",
 ];
 
 export {

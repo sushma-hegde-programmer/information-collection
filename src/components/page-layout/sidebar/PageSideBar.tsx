@@ -3,7 +3,6 @@ import { Layout, Menu } from "antd";
 import careator_logo from "../../../images/careator-logo.svg";
 import { NavLink } from "react-router-dom";
 import sidebarOptions from "./SidebarOptions";
-import { LaptopOutlined } from "@ant-design/icons";
 import "./PageSideBar.css";
 
 const { Sider } = Layout;
@@ -20,10 +19,9 @@ const PageAppBar: React.FC<Props> = ({
   role,
   grantToggleAllowed,
   toggle,
-}) => {
-  console.log("in page appbar");
-  console.log("grant toggle allowed function", grantToggleAllowed);
+}) => {  
   let imageClasses = "sidebar__img";
+  let sidebarItemClass ="sidebar__item";  
   if (collapsed) {
     imageClasses = "sidebar__img hide";
   }
@@ -37,24 +35,19 @@ const PageAppBar: React.FC<Props> = ({
         collapsed={collapsed}
         breakpoint="md"
         collapsedWidth="5rem"
-        onBreakpoint={(broken) => {
-          console.log("broken in sidebar", broken);
-          console.log("toggle allowed in sidebar", grantToggleAllowed);
-          console.log("collapsed in sidebar", collapsed);
+        onBreakpoint={(broken) => {          
           if(!broken){ if(collapsed){
             toggle();
-            grantToggleAllowed()
+            grantToggleAllowed();
           }}
           if (collapsed && broken) {grantToggleAllowed(); }
           else if(broken && !collapsed){
-            toggle();
-            console.log("collapsed is now after hitting breakpoing", collapsed);
+            toggle();           
             grantToggleAllowed();
-            toggle()
+            toggle();
           }
         }}
-      >       
-        {console.log("grant toggle allowed", grantToggleAllowed)}
+      >           
         <Menu
           className="sidebar__menu"
           mode="inline"
@@ -68,21 +61,7 @@ const PageAppBar: React.FC<Props> = ({
               key="logo"
               className={imageClasses}
             />
-          </Menu.Item>
-          <Menu.Item
-            id="workspace"
-            className="sidebar__item workspace"
-            icon={<LaptopOutlined />}
-            key="workspace"
-          >
-            <NavLink
-              className="sidebar__item navlink"
-              exact
-              to={`/${role}/workspace`}
-            >
-              My Workspace
-            </NavLink>
-          </Menu.Item>
+          </Menu.Item>          
           {/* if you write separate component to display menu Item, <Menu.Item></Menu.Item> should be written in that component
           that menu item will remain selected once it is selected. The ant default class will not be changed even though you select another menu item.
           So if you give background color for selected class that won't be changed even if you select other menu item
@@ -91,7 +70,7 @@ const PageAppBar: React.FC<Props> = ({
             return (
               <Menu.Item
                 id={item.option}
-                className="sidebar__item"
+                className={`${sidebarItemClass} ${item.option}`}
                 icon={item.icon}
                 key={item.option}
               >

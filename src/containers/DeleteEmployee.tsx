@@ -3,7 +3,7 @@ import Layout, { Content } from "antd/lib/layout/layout";
 import Title from "antd/lib/typography/Title";
 import axios, { AxiosResponse } from "axios";
 import React, { SyntheticEvent, useEffect, useState } from "react";
-import {Redirect, useLocation} from "react-router-dom";
+import {Redirect, useHistory, useLocation} from "react-router-dom";
 import EmployeeService from "../services/EmployeeService";
 import DisplayBreadcrumb from "../components/content/breadcrumb/DisplayBreadcrumb";
 import Text from "antd/lib/typography/Text";
@@ -11,6 +11,7 @@ import constants  from "../constants";
 
 function DeleteEmployee () {
     let employeeData: any = useLocation();
+    const history = useHistory();
     console.log(employeeData)
     const role: string = employeeData.state.record.role[0]
     const selectedId: number = employeeData.state.record.id.eid
@@ -137,7 +138,7 @@ function DeleteEmployee () {
             else {
                 await deleteEmployee(selectedId);
                 await AssignEmployee(assignedId, selectedMid);
-                return(<Redirect push to='/Admin/manage-employees' />)
+                history.push("/Admin/manage-employees")
             }
         } catch (error) {
             console.log(error)
