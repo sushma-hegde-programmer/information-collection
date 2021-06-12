@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PageLayout from "../containers/PageLayout";
 import { Redirect } from "react-router-dom";
-import AdminWorkspace from "../containers/AdminWorkspace";
+import Workspace from "../containers/Workspace";
 import DashboardContent from "../components/DashboardContent";
 import EmployeeList from "../containers/EmployeeList";
 import CreateUserMain from "../containers/CreateUserMain";
@@ -24,7 +24,7 @@ const AdminRouter: React.FC<Props> = ({ role }) => {
               return <Redirect to="/admin/workspace" />;
             }}
           />
-          <Route exact path="/admin/workspace" component={AdminWorkspace} />
+          <Route exact path="/admin/workspace" component={Workspace} />
           <Route exact path="/admin/dashboard" component={DashboardContent} />
           <Route
             exact

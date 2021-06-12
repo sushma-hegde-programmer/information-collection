@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import PageLayout from "../containers/PageLayout";
 import CandidateSubmenu1 from "../containers/CandidateSubmenu1";
 import CandidateSubmenu2 from "../containers/CandidateSubmenu2";
-import CandidateWorkspace from "../containers/CandidateWorkspace";
+import Workspace from "../containers/Workspace";
 
 type Props = {
   role: string;
@@ -25,7 +25,7 @@ const CandidateRouter: React.FC<Props> = ({ role }) => {
           <Route
             exact
             path="/candidate/workspace"
-            component={CandidateWorkspace}
+            component={Workspace}
           />
           <Route
             exact

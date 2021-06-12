@@ -13,8 +13,7 @@ type Props = {
   toggle: () => void;
   toggleAllowed: boolean;
 };
-const PageNavBar: React.FC<Props> = ({ toggle, toggleAllowed }) => {
-  // console.log("in page navbar toggle allowed", toggleAllowed);
+const PageNavBar: React.FC<Props> = ({ toggle, toggleAllowed }) => {  
   const [visible, setVisible] = useState(false);
 
   const hide = () => {

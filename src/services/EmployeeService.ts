@@ -5,7 +5,7 @@ const getEmployees = (
   field: string = "Id",
   order: string = "ASC",
   query: string,
-  role: string
+  role: string,
 ) => {
   const url = `${constants.BASE_URL}/employee?q=${query}&f=${field}&o=${order}&r=${role}`;
   return axios.get(url);
@@ -25,8 +25,8 @@ const getEmployeeNameById = (id: number) => {
   return axios.get(url);
 };
 
-const getEmployeesByRole = (role: string = "") => {
-  const url = `${constants.BASE_URL}/employee?r=${role}`;
+const getEmployeesByRole = (role: number) => {
+  const url = `${constants.BASE_URL}/employee?r='${role}'`;
   return axios.get(url);
 };
 

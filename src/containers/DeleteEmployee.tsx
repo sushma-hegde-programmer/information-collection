@@ -13,7 +13,8 @@ function DeleteEmployee () {
     let employeeData: any = useLocation();
     const history = useHistory();
     console.log(employeeData)
-    const role: string = employeeData.state.record.role[0]
+    const role: number = employeeData.state.record.id.rid
+    const roleName: string = employeeData.state.record.role
     const selectedId: number = employeeData.state.record.id.eid
     const selectedMid: string = employeeData.state.record.id.mid
     const selectedEmail: number = employeeData.state.record.email
@@ -61,7 +62,7 @@ function DeleteEmployee () {
 
     useEffect(() => {
     
-        const getData = async (role: string) => {
+        const getData = async (role: number) => {
         // const { data } = await EmployeeService.deleteEmployees(role)
         try {
             const { data } = await EmployeeService.getEmployeesByRole(role)
@@ -168,7 +169,7 @@ function DeleteEmployee () {
                         <Row justify='center' align='middle' gutter={16}>
                             <Col span={12}>
                                 <Title level={2}>
-                                    No other Employee of same role, Please add employee.
+                                    No {roleName} exists to  reassign. Please add one {roleName}.
                                 </Title>
                                 
                             </Col>
@@ -202,20 +203,20 @@ function DeleteEmployee () {
                             textAlign: "center",
                         }}
                     >
-                        <Row justify='center' align='middle' gutter={16}>
+                        <Row justify='start' align='middle' gutter={16}>
                             <Col span={12}>
                                 <Title level={2}>
-                                    Select new Employee for
+                                    Assign from : {nameOfSelected}
                                 </Title>
                             
                             </Col>
                         
                         </Row>
 
-                        <Row justify='center' align='middle' gutter={16}>
+                        <Row justify='start' align='middle' gutter={16}>
                             <Col span={12}>
-                                <Title level={3}>
-                                    {nameOfSelected}
+                                <Title level={2}>
+                                    Assign to : {nameOfSelected}
                                 </Title>
                             
                             </Col>
@@ -240,8 +241,8 @@ function DeleteEmployee () {
                         <Row justify='center' align='middle' gutter={16}>
                             <Col span={12}>
                                 <Popconfirm title='Are you sure you want to delete and reassign' onConfirm={() => handleDelete()}>
-                                    <Button type="primary" style={{ width: '400px' }} danger>
-                                        Delete and assign new Employee
+                                    <Button type="primary" style={{ width: '400px' }} >
+                                        Delete and reassign 
                                 </Button>
                                 </Popconfirm>
                             </Col>

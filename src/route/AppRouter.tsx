@@ -1,6 +1,6 @@
 import React from "react";
 import AdminRouter from "./AdminRouter";
-import RecruiterRouter from "../RecruiterRouter";
+import RecruiterRouter from "./RecruiterRouter";
 import HRRouter from "./HRRouter";
 import AccountManagerRouter from "./AccoutManagerRouter";
 import LeaderRouter from "./LeaderRouter";
@@ -33,12 +33,15 @@ class AppRouter extends React.Component<Props, State> {
       var id: any = this.props.userData.user?.userId;    
     }
     try {      
-      const { data } = await UserService.getUserDetailsById(id);         
-      sessionStorage.setItem("lastLogin",JSON.stringify(data[0].lastLogin))
-      sessionStorage.setItem("fistName", data[0].firstName);
-      sessionStorage.setItem("lastName", data[0].lastName);     
-      sessionStorage.setItem("mobile",data[0].mobile);
-      sessionStorage.setItem("role",data[0].userRole)
+      const { data } = await UserService.getUserDetailsById(id);  
+      var date = new Date(data[0].lastLogin);     
+      var dateString=String(date)       
+      window.localStorage.setItem("lastLogin",dateString);   
+      window.localStorage.setItem("firstName", data[0].firstName);  
+      window.localStorage.setItem("lastName", data[0].lastName);  
+      window.localStorage.setItem("mobile",data[0].mobile);  
+      window.localStorage.setItem("role",data[0].userRole);  
+
       this.setState({
         role: data[0].userRole,
         gotData: true,

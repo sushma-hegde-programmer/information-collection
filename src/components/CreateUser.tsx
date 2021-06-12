@@ -306,7 +306,7 @@ const CreateUser: React.FC<Props> = ({ rolelist, click, reports }) => {
                   {
                     message: "Please Select Reporting Manager",
                   },
-                  { required: true },
+                  { required: false },
                 ]}
               >
                 <Select

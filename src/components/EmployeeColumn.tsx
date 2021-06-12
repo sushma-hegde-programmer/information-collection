@@ -28,7 +28,7 @@ const EmployeeColumn = [
     dataIndex: "managerName",
     key: "managerName",
     sorter: true,
-    render: (fullName: any) => (!fullName ? "No Manager" : `${fullName}`),
+    render: (fullName: any) => (!fullName ? "-" : `${fullName}`),
   },
   {
     title: "Role",
@@ -59,11 +59,11 @@ const EmployeeColumn = [
       </>
     ),
     filters: [
-      { text: "Admin", value: "Admin" },
-      { text: "Leader", value: "Leader" },
-      { text: "BDM", value: "BDM" },
-      { text: "HR", value: "HR" },
-      { text: "Recruiter", value: "Recruiter" },
+      { text: "Admin", value: "1" },
+      { text: "Leader", value: "2" },
+      { text: "BDM", value: "3" },
+      { text: "HR", value: "4" },
+      { text: "Recruiter", value: "5" },
     ],
   },
 

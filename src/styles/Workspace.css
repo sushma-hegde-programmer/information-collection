@@ -1,0 +1,14 @@
+@import "~antd/dist/antd.css";
+
+.workspace{   
+    padding: 0 3.125rem;
+}
+
+.workspace__content{
+    min-height: 31.25rem;
+    padding: 3.125rem;
+    margin: 0;   
+    background-color: white;
+    color: black;
+    text-align: center;
+}

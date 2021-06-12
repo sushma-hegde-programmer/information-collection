@@ -42,13 +42,13 @@ class EmployeeList extends React.Component<State> {
     employeelist: [],
     pagination: {
       current: 1,
-      pageSize: 4,
+      pageSize: 5,
     },
     loading: true,
     order: "ASC",
-    field: "firstName",
+    field: "e.firstName",
     query: "",
-    role: "",
+    role: "''",
   };
 
   componentDidMount() {
@@ -88,7 +88,7 @@ class EmployeeList extends React.Component<State> {
         const tabledatarow: any = {
           fullName: { firstname: value.firstName, lastname: value.lastName },
           email: value.email,
-          id: { sno: key + 1, eid:value.employeeId, userId: value.userId, mid: value.managerId },
+          id: { sno: key + 1, eid:value.employeeId, userId: value.userId, mid: value.managerId, rid:value.roleId },
           managerName: value.managerName,
           role: [value.userRole],
         };
@@ -124,20 +124,26 @@ class EmployeeList extends React.Component<State> {
     if (sorter.field == "fullName") {
       sorter.field = "firstName";
     }
-    //filters added
-    if (filters.role == null) filters.role = "";
-    else {
-      let RoleValue: string;
 
-      RoleValue = "";
+    //filter
+    if (filters.role == null) {
+      console.log("inside filter");
+      filters.role = "''";
+    } else {
+      let RoleValue: string;
+      console.log("in filter");
+      console.log(filters.role);
+
+      RoleValue = "'";
 
       filters.role.forEach(function (value: any) {
-        RoleValue += "'" + value + "',";
+        RoleValue += "" + value + ",";
       });
-      RoleValue += "''";
-      filters.role = RoleValue;
+      RoleValue += "0'";
+      filters.role = RoleValue; // RoleValue;
       console.log(RoleValue);
     }
+
 
     await this.setState({
       field: sorter.field,
